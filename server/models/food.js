@@ -3,7 +3,7 @@ var FoodSchema = mongoose.Schema({
     title: {
         type: String,
         required: true,
-        match: [/^[a-zA-Z0-9 ]+$/,"Tiêu đề sai định dạng"],
+        match: [/^[a-zA-Z0-9 ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$/,"Tiêu đề sai định dạng"],
         validate: [(title) => {
             return title.length >= 5 && title.length <= 100;
         }, "Tiêu đề sai định dạng"]
@@ -11,7 +11,7 @@ var FoodSchema = mongoose.Schema({
     type: {
         type: String,
         required: true,
-        match: [/^[a-zA-Z0-9 ]+$/,"Loại món sai định dạng"],
+        match: [/^[a-zA-Z0-9 ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$/,"Loại món sai định dạng"],
         validate: [(type) => {
             return type.length >= 3 && type.length <= 100;
         }, "Loại món sai định dạng"]
@@ -19,12 +19,6 @@ var FoodSchema = mongoose.Schema({
     body: {
         type: String,
         required: true
-    },
-    image: {
-        type: String
-    },
-    video: {
-        type: String
     },
     date: {
         type: Date

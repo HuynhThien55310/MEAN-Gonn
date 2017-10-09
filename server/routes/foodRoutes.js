@@ -1,7 +1,6 @@
 module.exports = function(app) {
     var Food = require('../controllers/foodController');  
     app.route('/food')
-        .get(Food.getAllFood)
         .post(Food.createFood);
     
     app.route('/food/:id')
@@ -9,5 +8,6 @@ module.exports = function(app) {
         .put(Food.updateFood)
         .delete(Food.deleteFood);
 
-    
+    app.route('/food/page/:page')
+        .get(Food.getFoodList)
 }

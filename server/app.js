@@ -5,7 +5,7 @@ const ejs = require('ejs');
 const mongoose = require('mongoose');
 const port = 8080;
 const app = express();
-var foodRouter = require('./routes/foodRoutes');  
+var foodRouter = require('./routes/foodRoutes.js');  
 
 
 /*
@@ -23,9 +23,9 @@ foodRouter(app);
  *  Database configure
  */
 
- const dbConfig = require('./config/database');
- moongose.Promise = global.Promise;
- moongose.connect(dbConfig, {
+ const dbConfig = require('./config/database.js');
+ mongoose.Promise = global.Promise;
+ mongoose.connect(dbConfig.url, {
     useMongoClient: true
 }, (err) => {
     console.log('connected to database');

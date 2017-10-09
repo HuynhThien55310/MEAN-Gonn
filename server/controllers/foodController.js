@@ -22,19 +22,19 @@ exports.createFood = (req, res) => {
 
 exports.getFoodList = (req, res) => {
     var page = req.params.page;
-    var skipItem = page * 10;
+    var skipItem = (page-1) * 10;
     Food.find((err, foods) => {
         if(err){
             res.send(err);
         }
+        console.log(foods);
         res.json(foods);
     }).sort({date: -1}).skip(skipItem).limit(10);
 };
 
 exports.deleteFood = (req, res) => {
-    var foodId = req.params.id;
     // Delete record in food collection
-    Food.findByIdAndRemove({_id: id}, (err, result) => {
+    Food.findByIdAndRemove({_id: req.params.id}, (err, result) => {
         if(err){
             res.send(err);
         }
@@ -55,7 +55,7 @@ exports.getFood = (req, res) => {
 }
 
 exports.updateFood = (req, res) => {
-    Food.findByIdAndUpdate(req.params._id,req.body, (err, food) => {
+    Food.findByIdAndUpdate(req.params.id,req.body, (err, food) => {
         if (err){
             res.send(err)
         }

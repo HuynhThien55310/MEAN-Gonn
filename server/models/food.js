@@ -21,7 +21,8 @@ var FoodSchema = mongoose.Schema({
         required: true
     },
     date: {
-        type: Date
+        type: Date,
+        default: Date().toLocaleString()
     },
     like: {
         type: Number

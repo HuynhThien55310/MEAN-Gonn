@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const port = 8080;
 const app = express();
 var foodRouter = require('./routes/foodRoutes.js');  
-
+var likeRouter = require('./routes/likeRoutes.js');
 
 /*
 *  App configure
@@ -18,7 +18,7 @@ app.listen(port, () => {
     });
 
 foodRouter(app);
-
+likeRouter(app);
 /*
  *  Database configure
  */

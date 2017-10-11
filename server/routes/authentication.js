@@ -16,6 +16,5 @@ module.exports=function(router){
         User.updatePasswordUser(req,res);
     })
     
-
    return router;
 }

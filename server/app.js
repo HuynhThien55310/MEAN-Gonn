@@ -5,14 +5,14 @@ const ejs = require('ejs');
 const mongoose = require('mongoose');
 const port = 8080;
 const app = express();
-var foodRouter = require('./routes/foodRoutes.js');  
+var foodRouter = require('./routes/foodRoutes.js'); 
+var ingredient=require('./routes/ingredientRouters')(router);
 const authentication=require('./routes/authentication')(router);
-const userLogin=require('./routes/login')(router);
 const afterLogin=require('./routes/index')(router);
 const session = require('express-session');
 const passport = require('passport');
 const social= require('./passport/passport')(app,passport);
-const updatepassword=require('./routes/changePassword')(router);
+
 
 
 /*
@@ -46,12 +46,11 @@ foodRouter(app);
  * Authentication
  */
 app.use('/user',authentication);
-app.use('/user',userLogin);
-app.use('/index',userLogin);
-app.use('/update',updatepassword);
+app.use('/index',afterLogin);
+app.use('/ingredient',ingredient);
 
 app.get('*',(req,res)=>{
-    res.send("OK")
+    res.redirect("/index")
 })
 
 

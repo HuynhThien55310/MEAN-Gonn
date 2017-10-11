@@ -171,28 +171,23 @@ UserSchema.pre('save', function (next) {
 
 UserSchema.pre("update", function (next) {
     const password = this.getUpdate().$set.password;
-    console.log("old pass:"+password);
+    //console.dir(this)
+    console.log("old pass:" + password);
     if (!password) {
         return next();
     }
-    this.findOne({ "email": this.getUpdate().$set.email }, function (err, doc) {
-        if (doc.password != this.getUpdate().$set.password) {
-           // this.getUpdate().$set.password = bcrypt.hashSync(this.getUpdate().$set.password);
-                bcrypt.hash(password, null, null, (err, hash) => {
-                    if (err) {
-                        return next(err);
-                    }
-                    console.log("da hash"+hash);
-                   
-                    this.getUpdate().$set.password=hash;
-                  
-                });
-        }
-        next();
-    })
 
-  
-});
+    bcrypt.hash(password, null, null, (err, hash) => {
+        if (err) {
+            return next(err);
+        }
+        console.log("da hash" + hash);
+
+        this.getUpdate().$set.password = hash;
+
+    });
+    next();
+})
 
 
 

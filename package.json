@@ -2,7 +2,7 @@
   "name": "gonn",
   "version": "1.0.0",
   "description": "\"# MEAN-Gonn\"",
-  "main": "index.js",
+  "main": " ./server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./server/app.js"
@@ -16,5 +16,17 @@
   "bugs": {
     "url": "https://github.com/HuynhThien55310/MEAN-Gonn/issues"
   },
-  "homepage": "https://github.com/HuynhThien55310/MEAN-Gonn#readme"
+  "homepage": "https://github.com/HuynhThien55310/MEAN-Gonn#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.7",
+    "express": "^4.16.1",
+    "express-session": "^1.15.6",
+    "mongoose": "^4.12.1",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0"
+  }
 }

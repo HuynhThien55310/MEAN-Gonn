@@ -5,7 +5,7 @@ const ejs = require('ejs');
 const mongoose = require('mongoose');
 const port = 8080;
 const app = express();
-var foodRouter = require('./routes/foodRoutes.js'); 
+
 var ingredient=require('./routes/ingredientRouters')(router);
 const authentication=require('./routes/authentication')(router);
 const afterLogin=require('./routes/index')(router);
@@ -13,6 +13,8 @@ const session = require('express-session');
 const passport = require('passport');
 const social= require('./passport/passport')(app,passport);
 
+var foodRouter = require('./routes/foodRoutes.js');  
+var likeRouter = require('./routes/likeRoutes.js');
 
 
 /*
@@ -30,7 +32,7 @@ app.listen(port, () => {
     });
 
 foodRouter(app);
-
+likeRouter(app);
 /*
  *  Database configure
  */

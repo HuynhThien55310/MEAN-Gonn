@@ -9,5 +9,8 @@ module.exports = function(app) {
         .delete(Food.deleteFood);
 
     app.route('/food/page/:page')
-        .get(Food.getFoodList)
+        .get(Food.getFoodList);
+
+    app.route('/search/food')
+        .get(Food.searchFood);
 }

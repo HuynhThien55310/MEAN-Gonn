@@ -7,7 +7,6 @@ exports.createFood = (req, res) => {
     food.title = req.body.title;
     food.type = req.body.type;
     food.body = req.body.body;
-    food.date = new Date().toLocaleString();
     food.like = 0
     food.share = 0;
     food.backdrop = req.body.backdrop;
@@ -22,19 +21,19 @@ exports.createFood = (req, res) => {
 
 exports.getFoodList = (req, res) => {
     var page = req.params.page;
-    var skipItem = page * 10;
+    var skipItem = (page-1) * 10;
     Food.find((err, foods) => {
         if(err){
             res.send(err);
         }
+        console.log(foods);
         res.json(foods);
     }).sort({date: -1}).skip(skipItem).limit(10);
 };
 
 exports.deleteFood = (req, res) => {
-    var foodId = req.params.id;
     // Delete record in food collection
-    Food.findByIdAndRemove({_id: id}, (err, result) => {
+    Food.findByIdAndRemove({_id: req.params.id}, (err, result) => {
         if(err){
             res.send(err);
         }
@@ -55,7 +54,7 @@ exports.getFood = (req, res) => {
 }
 
 exports.updateFood = (req, res) => {
-    Food.findByIdAndUpdate(req.params._id,req.body, (err, food) => {
+    Food.findByIdAndUpdate(req.params.id,req.body, (err, food) => {
         if (err){
             res.send(err)
         }
@@ -63,3 +62,25 @@ exports.updateFood = (req, res) => {
     });
 }
 
+exports.searchFood = (req, res) => {
+    var title = req.param('title');
+    var type = req.param('type');
+    if(type == "all" || type == ""){
+        Food.find({"title": new RegExp(req.param('title'), 'i')}, (err, foods) => {
+            if (err){
+                res.send(err)
+            }
+            console.log("all");
+            res.json(foods);
+        })
+    }else {
+        Food.find({"title": new RegExp(req.param('title'), 'i'), "type": req.param('type')}, (err, foods) => {
+            if (err){
+                res.send(err)
+            }
+            console.log(foods);
+            res.json(foods);
+        })
+    }
+    
+}

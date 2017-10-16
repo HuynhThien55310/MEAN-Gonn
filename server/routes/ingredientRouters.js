@@ -1,11 +1,16 @@
 var Ingredient = require('../controllers/ingredientController');  
-module.exports = function(router) {
-    router.post('/newingredient',(req,res)=>{
-        Ingredient.createIngredient(req,res);
-    })
-    .get('/listingredient',(req,res)=>{
-        Ingredient.getIngredientList(req,res);
-    })
-    
+module.exports = function(router)
+ {
+    router.route('/newingredient').get(Ingredient.createIngredient);
+    router.route('/listingredient').get(Ingredient.getIngredientList);
+    router.route('/getbyname').get(Ingredient.getIngredientByName);
+
+    router.route('/find/:id')
+    .get(Ingredient.getIngredientByID)
+    .delete(Ingredient.delIngredient)
+    .put(Ingredient.updateIngredient)
+
+
+
    return router;
 }

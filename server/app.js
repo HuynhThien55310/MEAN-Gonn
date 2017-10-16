@@ -5,7 +5,6 @@ const ejs = require('ejs');
 const mongoose = require('mongoose');
 const port = 8080;
 const app = express();
-
 var ingredient=require('./routes/ingredientRouters')(router);
 const authentication=require('./routes/authentication')(router);
 const afterLogin=require('./routes/index')(router);
@@ -15,6 +14,8 @@ const social= require('./passport/passport')(app,passport);
 
 var foodRouter = require('./routes/foodRoutes.js');  
 var likeRouter = require('./routes/likeRoutes.js');
+const cookieParser = require('cookie-parser');
+
 
 
 /*
@@ -30,7 +31,7 @@ app.use(bodyParser.json());
 app.listen(port, () => {
     console.log("listening on port " + port);
     });
-
+app.use(cookieParser());
 foodRouter(app);
 likeRouter(app);
 /*

@@ -148,3 +148,14 @@ exports.updatePasswordUser=(req,res)=>{
         res.redirect('/index');
     }
 }
+
+exports.updateInfoUser=(req,res)=>{
+    User.findOneAndUpdate({'email':req.body.email},
+    {$set:{firstname:req.body.firstname,lastname:req.body.lastname,gender:req.body.gender}},
+    {new:true},
+    (err,user)=>{
+        if(err) res.send(err);
+        res.json(user);
+    });
+}
+

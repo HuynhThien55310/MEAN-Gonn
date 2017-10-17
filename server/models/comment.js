@@ -8,16 +8,18 @@ var CommentSchema = mongoose.Schema({
         type: Date,
         default: Date().toLocaleString()
     },
-    author: {
-        id: {
+    userId: {
             type: mongoose.Schema.Types.ObjectId,
             required: true
-        },
-        name: {
+    },
+    userName: {
             type: String,
             required: true,
             match: [/^[a-zA-Z0-9 ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$/,"Tên sai định dạng"],
-        }
+    },
+    userAvatar: {
+        type: String,
+        required: true
     },
     text: {
         type: String,

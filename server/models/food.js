@@ -20,7 +20,7 @@ var FoodSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    date: {
+    posted: {
         type: Date,
         default: Date().toLocaleString()
     },

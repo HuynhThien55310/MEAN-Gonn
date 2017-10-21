@@ -28,7 +28,7 @@ exports.getFoodList = (req, res) => {
         }
         console.log(foods);
         res.json(foods);
-    }).sort({date: -1}).skip(skipItem).limit(10);
+    }).sort({posted: -1}).skip(skipItem).limit(10);
 };
 
 exports.deleteFood = (req, res) => {

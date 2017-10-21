@@ -13,7 +13,7 @@ exports.createFood = (req, res) => {
 
     food.save((err, food) => {
         if(err){
-            res.send(err);
+           return  res.send(err);
         }
         res.json(food);
     })
@@ -24,7 +24,7 @@ exports.getFoodList = (req, res) => {
     var skipItem = (page-1) * 10;
     Food.find((err, foods) => {
         if(err){
-            res.send(err);
+            return  res.send(err);
         }
         console.log(foods);
         res.json(foods);
@@ -35,7 +35,7 @@ exports.deleteFood = (req, res) => {
     // Delete record in food collection
     Food.findByIdAndRemove({_id: req.params.id}, (err, result) => {
         if(err){
-            res.send(err);
+            return  res.send(err);
         }
         res.json(result);
     });
@@ -47,7 +47,7 @@ exports.deleteFood = (req, res) => {
 exports.getFood = (req, res) => {
     Food.findById(req.params.id, (err, food) => {
         if(err){
-            res.send(err);
+            return res.send(err);
         }
         res.json(food);
     })
@@ -56,7 +56,7 @@ exports.getFood = (req, res) => {
 exports.updateFood = (req, res) => {
     Food.findByIdAndUpdate(req.params.id,req.body, (err, food) => {
         if (err){
-            res.send(err)
+            return res.send(err)
         }
         res.json(food);
     });
@@ -68,7 +68,7 @@ exports.searchFood = (req, res) => {
     if(type == "all" || type == ""){
         Food.find({"title": new RegExp(req.param('title'), 'i')}, (err, foods) => {
             if (err){
-                res.send(err)
+                return res.send(err)
             }
             console.log("all");
             res.json(foods);
@@ -76,7 +76,7 @@ exports.searchFood = (req, res) => {
     }else {
         Food.find({"title": new RegExp(req.param('title'), 'i'), "type": req.param('type')}, (err, foods) => {
             if (err){
-                res.send(err)
+                return res.send(err)
             }
             console.log(foods);
             res.json(foods);

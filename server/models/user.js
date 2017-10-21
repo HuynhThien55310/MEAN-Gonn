@@ -134,7 +134,7 @@ var UserSchema = new Schema(
         password: { type: String, required: true, validate: passwordValidators },
         birthday: { type: Date, default: null },
         gender: { type: String, default: null },
-
+        
     });
 /**
  * Encode password before save on database

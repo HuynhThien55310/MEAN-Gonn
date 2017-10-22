@@ -79,5 +79,4 @@ exports.searchFood = (req, res) => {
             res.json(foods);
         })
     }
-    
 }

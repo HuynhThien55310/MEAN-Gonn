@@ -5,27 +5,23 @@ var User= require('../models/user');
 
 exports.postComment = (req, res) => {
     var comment = new Comment();
-    ////get more user information
+    comment.foodId = req.body.foodId;
+    comment.userId = req.body.userId;
+    comment.text = req.body.text;
     User.findById(req.body.userId,(err, user) => {
         if(err){
             return res.send(err);
         }
         comment.userAvatar = user.avatar;
         comment.userName = user.firstname + " " + user.lastname;
+        comment.save((err, cmt) => {
+            if(err){
+                return res.send(err);
+            }
+            res.json(cmt);
+        });
+        console.log(comment);
     });
-
-    // Save cmt
-    
-    comment.foodId = req.body.foodId;
-    comment.userId = req.body.userId;
-    comment.text = req.body.text;
-    comment.save((err, cmt) => {
-        if(err){
-            return res.send(err);
-        }
-        res.json(cmt);
-    });
-
 }
 
 exports.deleteComment = (req, res) => {

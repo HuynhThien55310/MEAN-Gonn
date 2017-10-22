@@ -14,6 +14,7 @@ const social= require('./passport/passport')(app,passport);
 
 var foodRouter = require('./routes/foodRoutes.js');  
 var likeRouter = require('./routes/likeRoutes.js');
+var commentRouter = require('./routes/commentRoutes.js')
 const cookieParser = require('cookie-parser');
 
 
@@ -34,6 +35,7 @@ app.listen(port, () => {
 app.use(cookieParser());
 foodRouter(app);
 likeRouter(app);
+commentRouter(app);
 /*
  *  Database configure
  */

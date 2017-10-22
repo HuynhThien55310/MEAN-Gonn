@@ -43,6 +43,5 @@ exports.hitLike = (req, res) => {
                 });
             });
         }
-        //res.json(result);
     })
 }

@@ -32,16 +32,13 @@ exports.getFoodList = (req, res) => {
 };
 
 exports.deleteFood = (req, res) => {
-    // Delete record in food collection
     Food.findByIdAndRemove({_id: req.params.id}, (err, result) => {
         if(err){
             return  res.send(err);
         }
         res.json(result);
+
     });
-
-    // Delete cmt of food
-
 }
 
 exports.getFood = (req, res) => {

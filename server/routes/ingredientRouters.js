@@ -1,11 +1,11 @@
 var Ingredient = require('../controllers/ingredientController');  
 module.exports = function(router)
  {
-    router.route('/newingredient').get(Ingredient.createIngredient);
-    router.route('/listingredient').get(Ingredient.getIngredientList);
-    router.route('/getbyname').get(Ingredient.getIngredientByName);
+    router.route('/api/ingredient').post(Ingredient.createIngredient);
+    router.route('/api/ingredients').get(Ingredient.getIngredientList);
+    router.route('/api/search/ingredient/:name').get(Ingredient.getIngredientByName);
 
-    router.route('/find/:id')
+    router.route('/api/ingredient/:id')
     .get(Ingredient.getIngredientByID)
     .delete(Ingredient.delIngredient)
     .put(Ingredient.updateIngredient)

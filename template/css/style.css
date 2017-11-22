@@ -2789,3 +2789,46 @@ a.item-link:hover {
 	margin-top: 15px;
 }
 /* add post end */
+
+/* signin page  */
+.half-form:first-child {
+	margin-right: 2%;
+}
+
+.form-group.half-form {
+	width: 49%;
+	float: left;
+}
+button.btn.btn-primary.btn-signup {
+	padding-left: 30px;
+	background-color: #85B7CC;
+	border-color: #85B7CC;
+	transition: all 0.4s;
+	padding-right: 30px;
+	border-radius: 30px;
+}
+button.btn.btn-primary.btn-signup:hover {
+	background-color: #aed4e4;
+	border-color: #aed4e4;
+	color: #222222;
+}
+.sub-title h1 {
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+}
+.title h1 {
+	color: #f7b0bd;
+	text-align: center;
+	font-size: 60px;
+	font-weight: bold;
+}
+.signup-title-container {
+	margin-top: 35px;
+	margin-bottom: 20px;
+}
+.btn-group-signup {
+	display: flex;
+	justify-content: center;
+}
+/* signin page end */

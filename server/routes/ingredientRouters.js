@@ -1,7 +1,7 @@
 var Ingredient = require('../controllers/ingredientController');  
 module.exports = function(router)
  {
-    router.route('/newingredient').get(Ingredient.createIngredient);
+    router.route('/newingredient').post(Ingredient.createIngredient);
     router.route('/listingredient').get(Ingredient.getIngredientList);
     router.route('/getbyname').get(Ingredient.getIngredientByName);
 

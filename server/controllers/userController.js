@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
 const User= require('../models/user');
 var ejs=require('ejs');
+var jwt = require('jsonwebtoken');
+var secret='hiimezio';
+
+
 
 exports.resgisterUser=(req,res)=>{
+
     if(!req.body.email)
     {
         res.send({success:false,message:"You must provide an email"});
@@ -58,7 +63,8 @@ exports.resgisterUser=(req,res)=>{
                             }
                         }
                         else{
-                            res.json({success:true,message:'User saved'});
+                          
+                            res.json(user);
                         }
                         
                     });
@@ -73,6 +79,9 @@ exports.getLoginUser=(req,res)=>{
         res.send(html);
     })
 }
+
+
+
 exports.postLoginUser=(req,res)=>{
     if(!req.body.email){
         res.json({success:false,message:"You must provide email"});
@@ -87,9 +96,13 @@ exports.postLoginUser=(req,res)=>{
                 if(user){
                     const validUser=user.comparePassword(req.body.password);
                     if(validUser){
+
+                        //login with token
+                        var token =  jwt.sign({email:user.email},secret,{expiresIn:'24h'});
                         req.session.user=req.body.email;
-                      //  res.send({success:false,message:"Login OK"});
-                      res.redirect('/index');
+                        res.json({success:true,message:"Login Successfully..."})
+                     
+                    //  res.redirect('/index');
                     }else{
                         res.json({success:false,message:"Password or User name was wrong..."})
                     }
@@ -102,6 +115,9 @@ exports.postLoginUser=(req,res)=>{
     }
 }
 exports.updatePasswordUser=(req,res)=>{
+
+
+    
     if(req.session.user){
         if(!req.body.oldpassword){
             res.json({success:false,message:"you must provide old password"});
@@ -149,6 +165,8 @@ exports.updatePasswordUser=(req,res)=>{
     }
 }
 
+
+
 exports.updateInfoUser=(req,res)=>{
     User.findOneAndUpdate({'email':req.body.email},
     {$set:{firstname:req.body.firstname,lastname:req.body.lastname,gender:req.body.gender}},
@@ -158,4 +176,3 @@ exports.updateInfoUser=(req,res)=>{
         res.json(user);
     });
 }
-

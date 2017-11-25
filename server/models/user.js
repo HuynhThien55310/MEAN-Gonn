@@ -151,23 +151,7 @@ UserSchema.pre('save', function (next) {
         next();
     });
 });
-// UserSchema.pre('update', function (next) {
-//     this.findOne({"email": this.getUpdate().$set.email }, function (err, doc) {
-//         if (doc.password != this.getUpdate().$set.password) {
-//             this.getUpdate().$set.password = bcrypt.hashSync(this.getUpdate().$set.password);
-//         }
-//         next();
-//     })
-// });
 
-// UserSchema.pre('update', function (next) {
-//     this.findOne({"email": this.getUpdate().$set.email }, function (err, doc) {
-//         if (doc.password != this.getUpdate().$set.password) {
-//             this.getUpdate().$set.password = bcrypt.hashSync(this.getUpdate().$set.password);
-//         }
-//         next();
-//     })
-// });
 
 UserSchema.pre("update", function (next) {
     const password = this.getUpdate().$set.password;

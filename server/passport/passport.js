@@ -11,9 +11,6 @@ module.exports = (app, passport) => {
     saveUninitialized: false,
  
   }));
-
-
-
   passport.serializeUser(function (user, done) {
     done(null, user.id);
   });
@@ -30,12 +27,13 @@ module.exports = (app, passport) => {
     profileFields: ['id', 'displayName', 'photos', 'email']
   },
     function (accessToken, refreshToken, profile, done) {
-      console.log(profile._json.email);
+      console.log(profile._json);
       User.findOne({ email: profile._json.email }, (err, user) => {
         if (err) {
           done(err);
         }
         if (user && user != null) {
+          console.log("User login with Facebook :"+user);
           done(null, user);
         }
       });
@@ -51,15 +49,16 @@ module.exports = (app, passport) => {
     clientSecret: 'S2c6e9M_265IkPiGA00pxbBX',
     callbackURL: "http://localhost:8080/auth/google/callback"
   }, function (accessToken, refreshToken, profile, done) {
-     console.log(profile._json.emails[0].value);
+     console.log(profile._json);
     User.findOne({ email: profile._json.emails[0].value }, (err, user) => {
       if (err) 
       {
         done(err);
       }
-      else if (user) {
+      else if (user) { 
+        console.log("User login with google :"+user);
         done(null, user);
-        console.log("tim thay")
+       
       }
       
     });
@@ -76,8 +75,7 @@ module.exports = (app, passport) => {
   app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/user/login' }),
   function (req, res) {
     req.session.user=req.session.passport.user;
-  
-    console.log("IN passport"+req.session.user);
+
     res.redirect('/index');
   });
 
@@ -87,7 +85,7 @@ module.exports = (app, passport) => {
   app.get('/auth/google', passport.authenticate('google', { scope: 'email' }));
   app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/user/login' }),
     function (req, res) {
-       
+      
       req.session.user=req.session.passport.user;
      
       res.redirect('/index');

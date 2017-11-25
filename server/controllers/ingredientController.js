@@ -82,8 +82,6 @@ exports.updateIngredient=(req,res)=>{
             (err,ingredient)=>{
                 if(err) res.send(err);
                 res.json(ingredient);
-            });
-        
-       
+            }); 
  }
 

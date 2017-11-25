@@ -48,9 +48,19 @@ likeRouter(app);
 /**
  * Authentication
  */
+
+function requireRole (role) {
+    return function (req, res, next) {
+        if (req.session.user && req.session.user.role === role) {
+            next();
+        } else {
+            res.send(403);
+        }
+    }
+}
 app.use('/user',authentication);
 app.use('/index',afterLogin);
-app.use('/ingredient',ingredient);
+app.use('/ingredient',requireRole("user"),ingredient);
 
 app.get('*',(req,res)=>{
     res.redirect("/index")

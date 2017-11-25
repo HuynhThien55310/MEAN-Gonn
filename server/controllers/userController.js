@@ -99,7 +99,7 @@ exports.postLoginUser=(req,res)=>{
 
                         //login with token
                         var token =  jwt.sign({email:user.email},secret,{expiresIn:'24h'});
-                        req.session.user=req.body.email;
+                        req.session.user=user;
                         res.json({success:true,message:"Login Successfully..."})
                      
                     //  res.redirect('/index');

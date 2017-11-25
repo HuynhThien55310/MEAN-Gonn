@@ -1,4 +1,6 @@
 var Ingredient = require('../controllers/ingredientController');  
+
+
 module.exports = function(router)
  {
     router.route('/newingredient').post(Ingredient.createIngredient);
@@ -9,7 +11,6 @@ module.exports = function(router)
     .get(Ingredient.getIngredientByID)
     .delete(Ingredient.delIngredient)
     .put(Ingredient.updateIngredient)
-
 
 
    return router;

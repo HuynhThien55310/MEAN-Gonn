@@ -7,6 +7,8 @@
 <script src="js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--theme-style-->
+<link rel="stylesheet" href="tagsinput/bootstrap-tagsinput.css">
+<link rel="stylesheet" href="css/mystyle.css">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,6 +24,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>$(document).ready(function(){$(".memenu").memenu();});</script>	
 <!-- <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script> -->
 <script src="ckeditor/ckeditor.js"></script>
+<script src="js/upload-img.js"></script>
+<script src="tagsinput/dist/bootstrap-tagsinput.js"></script>
 <!-- /start menu -->
 </head>
 <body>
@@ -58,8 +62,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    <div class="add-post-container">
         <div class="container col-md-offset-3 col-sm-offset-3 col-lg-offset-3 col-md-6 col-sm-6 col-lg-6">
             <div class="title-container">
-                <label for="title">Post title</label>
+                <label for="title">Tiêu đề</label>
                 <input name="title" id="" placeholder="Title of your post"></input>
+            </div>
+            <div class="image-container">
+                <label>Ảnh bìa</label>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <span class="btn btn-upload btn-file">
+                            Duyệt <input type="file" id="imgInp">
+                        </span>
+                    </span>
+                    <input type="text" class="form-control" readonly>
+                </div>
+               
+                <img id='img-upload'/>
+              
+                
+            </div>
+            <div class="tag-container">
+                <label for="tagsinput">Phân loại</label>
+                <input type="text" value="Món chay" data-role="tagsinput" />
             </div>
             <div class="editor-container">
                 <textarea name="editor1"></textarea>
@@ -67,9 +90,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     CKEDITOR.replace( 'editor1');
                 </script>
             </div>
-            <div class="tag-container">
-
-            </div>
+            
             <div class="add-action-container">
                 <div class="left-btn">
                     <button type="button" class="btn btn-md post-btn">Back</button>

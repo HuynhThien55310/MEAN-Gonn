@@ -156,3 +156,59 @@ span.cmt-date {
     overflow: auto;
     margin-bottom: 20px;
 }
+/* upload image */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#img-upload{   
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px #222;
+}
+
+.image-container label {
+    margin-left: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #85B7CC;
+}
+span.btn.btn-upload.btn-file {
+    color: #fff;
+    background-color: #85b7cc;
+    border-color: #85b7cc;
+}
+/* upload image end */
+.bootstrap-tagsinput input[type="text"] {
+    border-radius: 10px;
+    border: solid 1px #5bc0de;
+    width: 20%;
+    padding-left: 5px;
+}
+.tag-container label {
+    margin-left: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #85B7CC;
+}
+.tag-container {
+    margin-bottom: 15px;
+}

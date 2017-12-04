@@ -212,3 +212,54 @@ span.btn.btn-upload.btn-file {
 .tag-container {
     margin-bottom: 15px;
 }
+.admin-ava-container{
+    width: 25%;
+}
+a.admin-ava img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    object-fit: cover;
+    border-radius: 13px;
+}
+.admin-ava-container {
+    float: left;
+    position: relative;
+    width: 25%;
+    padding-top: 25%;
+}
+.admin-header-wrapper {
+    overflow: auto;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 15px 15px 0 0;
+    border: solid 1px #eee;
+}
+.admin-info-container {
+    width: 70%;
+    float: right;
+    margin-top: 7%;
+}
+.admin-info-container span {
+    font-weight: bold;
+    font-size: 17px;
+    color: #222;
+    transition: all 0.4s;
+}
+.admin-info-container a:hover {
+    text-decoration: none;
+    color: rgba(34, 34, 34, 0.60);
+}
+.list-group-item:first-child {
+    border-radius: 0px !important;
+    border-top: none;
+}
+.list-group-item {
+    padding: 20px;
+    border: solid 1px #eee;
+}

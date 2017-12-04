@@ -1,0 +1,39 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+<div class="add-post-container">
+  <div class="container col-md-offset-3 col-sm-offset-3 col-lg-offset-3 col-md-6 col-sm-6 col-lg-6">
+      <div class="title-container form-group">
+          <label for="title">Tiêu đề</label>
+          <input name="title" id="" placeholder="Nhập tiêu đề" [(ngModel)]="title" formControlName = "title">
+      </div>
+      <div class="title-container form-group">
+        <label for="backdrop">Ảnh bìa</label>
+        <input name="backdrop" id="" placeholder="Link ảnh bìa" [(ngModel)]="backdrop" formControlName = "backdrop">
+      </div>
+      <div class="image-container form-group">
+          <img id='img-upload'src="{{backdrop}}"/>
+      </div>
+      <div class="tag-container form-group">
+          <label for="tagsinput">Loại món ăn</label>
+          <tag-input [(ngModel)]="type"
+          [editable]="true"
+          formControlName = "type">
+          </tag-input>
+      </div>
+      <div class="title-container">
+          <label for="content">Nội dung</label>
+      </div>
+      <div class="editor-container form-group">
+          <ckeditor
+          [(ngModel)]="body"
+          formControlName = "body">
+          </ckeditor>
+      </div>
+
+      <div class="add-action-container form-group">
+          <div class="left-btn">
+              <button type="submit">Lưu</button>
+          </div>
+      </div>
+ </div>
+</div>
+</form>

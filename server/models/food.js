@@ -13,7 +13,7 @@ var FoodSchema = mongoose.Schema({
         required : true,
         validate: [(array) => {
             return array.every((v) => typeof v === 'string' && v.length >= 3);
-        }, "Tiêu đề sai định dạng"]
+        }, "Loại món sai định dạng"]
     },
     body: {
         type: String,

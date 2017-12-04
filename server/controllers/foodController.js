@@ -7,15 +7,15 @@ exports.createFood = (req, res) => {
     food.title = req.body.title;
     food.type = req.body.type;
     food.body = req.body.body;
-    food.like = 0
+    food.like = 0;
     food.share = 0;
     food.backdrop = req.body.backdrop;
 
     food.save((err, food) => {
         if(err){
-           return  res.send(err);
+           return  res.json({success: false, err: err});
         }
-        res.json(food);
+        res.json({success: true, food: food});
     })
 }
 
@@ -24,19 +24,19 @@ exports.getFoodList = (req, res) => {
     var skipItem = (page-1) * 10;
     Food.find((err, foods) => {
         if(err){
-            return  res.send(err);
+            return  res.json({success: false, err: err});
         }
         console.log(foods);
-        res.json(foods);
+        res.json({success: true, food: food});
     }).sort({posted: -1}).skip(skipItem).limit(10);
 };
 
 exports.deleteFood = (req, res) => {
     Food.findByIdAndRemove({_id: req.params.id}, (err, result) => {
         if(err){
-            return  res.send(err);
+            return  res.json({success: false, err: err});
         }
-        res.json(result);
+        res.json({success: true, result: result});
 
     });
 }
@@ -44,18 +44,18 @@ exports.deleteFood = (req, res) => {
 exports.getFood = (req, res) => {
     Food.findById(req.params.id, (err, food) => {
         if(err){
-            return res.send(err);
+            return res.json({success: false, err: err});
         }
-        res.json(food);
+        res.json({success: true, food: food});
     })
 }
 
 exports.updateFood = (req, res) => {
     Food.findByIdAndUpdate(req.params.id,req.body, (err, food) => {
         if (err){
-            return res.send(err)
+            return res.json({success: false, err: err});
         }
-        res.json(food);
+        res.json({success: true, food: food});
     });
 }
 
@@ -65,18 +65,18 @@ exports.searchFood = (req, res) => {
     if(type == "all" || type == ""){
         Food.find({"title": new RegExp(req.param('title'), 'i')}, (err, foods) => {
             if (err){
-                return res.send(err)
+                return res.json({success: false, err: err});
             }
             console.log("all");
-            res.json(foods);
+            res.json({success: true, foods: foods});
         })
     }else {
         Food.find({"title": new RegExp(req.param('title'), 'i'), "type": req.param('type')}, (err, foods) => {
             if (err){
-                return res.send(err)
+                return res.json({success: false, err: err});
             }
             console.log(foods);
-            res.json(foods);
+            res.json({success: true, foods: foods});
         })
     }
 }

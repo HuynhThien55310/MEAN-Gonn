@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FoodService } from './services/food.service';
 import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 TagInputModule.withDefaults({
   tagInput: {
       placeholder: 'Nhập loại món ăn'
@@ -35,7 +35,8 @@ TagInputModule.withDefaults({
     TagInputModule,
     BrowserAnimationsModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InfiniteScrollModule
   ],
   providers: [FoodService],
   bootstrap: [AppComponent]

@@ -27,8 +27,8 @@ exports.getFoodList = (req, res) => {
             return  res.json({success: false, err: err});
         }
         console.log(foods);
-        res.json({success: true, food: food});
-    }).sort({posted: -1}).skip(skipItem).limit(10);
+        res.json({success: true, foods: foods});
+    }).sort({_id: -1}).skip(skipItem).limit(10);
 };
 
 exports.deleteFood = (req, res) => {

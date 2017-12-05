@@ -3,7 +3,6 @@ var FoodSchema = mongoose.Schema({
     title: {
         type: String,
         required: true,
-        match: [/^[a-zA-Z0-9 ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$/,"Tiêu đề sai định dạng"],
         validate: [(title) => {
             return title.length >= 5 && title.length <= 100;
         }, "Tiêu đề sai định dạng"]
@@ -12,7 +11,7 @@ var FoodSchema = mongoose.Schema({
         type     : Array,
         required : true,
         validate: [(array) => {
-            return array.every((v) => typeof v === 'string' && v.length >= 3);
+            return array.every((v) => typeof v === 'string' && v.length >= 2);
         }, "Loại món sai định dạng"]
     },
     body: {

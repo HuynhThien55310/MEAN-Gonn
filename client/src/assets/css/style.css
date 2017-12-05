@@ -2821,18 +2821,12 @@ a.item-link:hover {
 	font-size: 16px;
 	font-weight: bold;
 	color: #85B7CC;
-
+}
 /* add post end */
 
 /* signin page  */
-.half-form:first-child {
-	margin-right: 2%;
-}
 
-.form-group.half-form {
-	width: 49%;
-	float: left;
-}
+
 button.btn.btn-primary.btn-signup {
 	padding-left: 30px;
 	background-color: #85B7CC;
@@ -2862,7 +2856,7 @@ button.btn.btn-primary.btn-signup:hover {
 	margin-bottom: 20px;
 }
 .btn-group-signup {
-	display: flex;
+	display: block;
 	justify-content: center;
 }
 .signin a{
@@ -2926,6 +2920,30 @@ a.circle {
 	padding: 10px;
 }
 .post-detail {
-	margin-top: 50px;
+	margin-top: 0px;
 }
 /* post detail end */
+.form-group.half-form1 {
+	margin-right: 2%;
+	width: 49%;
+	float: left;
+}
+.form-group.half-form {
+	width: 49%;
+	float: left;
+}
+.form-container label {
+	margin-bottom: 7px;
+	font-size: 15px;
+}
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+	cursor: not-allowed;
+	background-color: #e6d7da;
+	opacity: 1;
+}
+select#gender {
+	padding: 7px;
+	border-radius: 4px;
+	border: solid 1px #ccc;
+	width: 100%;
+}

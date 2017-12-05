@@ -65,7 +65,7 @@ span.post-act-detail {
     font-size: 18px;
 }
 .post-interact-container {
-    text-align: center;
+    text-align: center;    
 }
 .circle {
 	line-height: 0;		/* remove line-height */
@@ -121,6 +121,7 @@ a.circle {
     background-color: #fff;
     box-shadow: 0px 0px 3px #ccc;
     padding-bottom: 0px;
+    margin-bottom: 30px;
 }
 .social-interact-container {
     border-bottom: solid 1px #eee;
@@ -262,4 +263,21 @@ a.admin-ava img {
 .list-group-item {
     padding: 20px;
     border: solid 1px #eee;
+}
+.user-detail-info h4 {
+    color: #e89dab;
+    font-size: 17px;
+}
+
+.user-detail-info {
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+.detail-info-container {
+    background-color: #fff;
+    border: solid 1px #eee;
+    border-top: none;
 }

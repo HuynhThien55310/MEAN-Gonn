@@ -5,13 +5,13 @@
         <div class="col-xs-6 col-sm-4 col-md-3">
           <div class="post-container">
             <div class="img-container">
-              <a href="#" class="post-img-link">
+              <a href="/food/{{item._id}}" class="post-img-link">
                 <img src="{{item.backdrop}}" alt="">
               </a>
             </div>
             <div class="content-container">
               <div class="title-container">
-                <a href="" class="post-title-link">
+                <a href="/food/{{item._id}}" class="post-title-link">
                   <span>{{item.title}}</span>
                 </a>
               </div>
@@ -32,4 +32,12 @@
       </li>
     </ul>
   </div>
+  <div infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="1000"
+  (scrolled)="onScrollDown()">
+  </div>
+  <div *ngIf="!finished">
+      Loading more movies...
+     </div>
 </div>

@@ -11,6 +11,9 @@ const appRoutes: Routes = [
   {
     path: 'admin/add-post',
     component: AddPostComponent
+  },
+  { path: '**',
+    redirectTo: '/'
   }
 ];
 

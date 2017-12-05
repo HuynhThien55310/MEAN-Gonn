@@ -1,19 +1,21 @@
 var ejs=require('ejs');
+var jwt = require('jsonwebtoken');
 module.exports=(router)=>{
     router.get('/',(req,res)=>{
-        if(!req.session.user){
-            return res.redirect('/user/login');
-        }
-        else{
-            console.log("IN index "+ req.session.user);
-            ejs.renderFile('./views/index.ejs',{},(err,html)=>{
-                res.send(html);
-            })
-        }
+        jwt.verify(req.token, 'hiimezio', function(err, data) {
+            if (err) {
+              res.sendStatus(403);
+            } else {
+              res.json({
+                description: 'Protected information. Congrats!',
+                data:data
+              });
+            }
+          });
     })
-    .post('/',(req,res)=>{
-        req.session.destroy();
-        return res.redirect('/user/login');
-    });
+    // .post('/',(req,res)=>{
+    //     req.session.destroy();
+    //     return res.redirect('/user/login');
+    // });
     return router;
 }

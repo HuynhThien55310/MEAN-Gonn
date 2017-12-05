@@ -131,10 +131,16 @@ var UserSchema = new Schema(
         email: { type: String, required: true, unique: true, lowercase: true, validate: emailValidators },
         firstname: { type: String, validate: firstnameValidators, required: true },
         lastname: { type: String, required: true },
-        password: { type: String, required: true, validate: passwordValidators },
+        password: { type: String, required: true, validate: passwordValidators,select:false },
         birthday: { type: Date, default: null },
         gender: { type: String, default: null },
-        role:{type:String, enum:['user','admin'],default:'user'},
+        role:{type:String,
+             enum:['user','admin'],
+            default:'user'},
+        active:{type:Boolean,required:true,default:false},
+        temporarytoken: { type: String, required: true },
+        resettoken:{type:String,required:false}
+        
     });
 /**
  * Encode password before save on database
@@ -152,26 +158,6 @@ UserSchema.pre('save', function (next) {
     });
 });
 
-
-UserSchema.pre("update", function (next) {
-    const password = this.getUpdate().$set.password;
-    //console.dir(this)
-    console.log("old pass:" + password);
-    if (!password) {
-        return next();
-    }
-
-    bcrypt.hash(password, null, null, (err, hash) => {
-        if (err) {
-            return next(err);
-        }
-        console.log("da hash" + hash);
-
-        this.getUpdate().$set.password = hash;
-
-    });
-    next();
-})
 
 
 

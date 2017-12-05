@@ -15,6 +15,7 @@ const social= require('./passport/passport')(app,passport);
 var foodRouter = require('./routes/foodRoutes.js');  
 var likeRouter = require('./routes/likeRoutes.js');
 const cookieParser = require('cookie-parser');
+const AuthUtils=require('../server/Utilities/AuthenticationUtil');
 
 
 
@@ -28,10 +29,12 @@ app.use(session({
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(cookieParser());
+
 app.listen(port, () => {
     console.log("listening on port " + port);
     });
-app.use(cookieParser());
 foodRouter(app);
 likeRouter(app);
 /*
@@ -49,23 +52,13 @@ likeRouter(app);
  * Authentication
  */
 
-function requireRole (role) {
-    return function (req, res, next) {
-        if (req.session.user && req.session.user.role === role) {
-            next();
-        } else {
-            res.send(403);
-        }
-    }
-}
+
 app.use('/user',authentication);
-app.use('/index',afterLogin);
-app.use('/ingredient',requireRole("user"),ingredient);
+app.use('/index',AuthUtils.ensureToken,afterLogin);
+app.use('/ingredient',AuthUtils.ensureToken,ingredient);
+
 
 app.get('*',(req,res)=>{
     res.redirect("/index")
 })
-
-
-
 

@@ -5,8 +5,8 @@ import 'rxjs/add/operator/map';
 export class FoodService {
   domain = 'http://localhost:3000/api';
   constructor(private _http: Http) { }
-  getPosts() {
-    return this._http.get('/api/products')
+  getPosts(page: Number) {
+    return this._http.get('/api/food/page/' + page)
       .map(res => res.json());
   }
 

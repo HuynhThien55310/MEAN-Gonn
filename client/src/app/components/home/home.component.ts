@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FoodService } from '../../services/food.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  items = [];
+  page = 1;
+
+  constructor(private _foodService: FoodService) {
+    this._foodService.getPosts(this.page).subscribe(res => this.items = res.foods);
+   }
 
   ngOnInit() {
   }

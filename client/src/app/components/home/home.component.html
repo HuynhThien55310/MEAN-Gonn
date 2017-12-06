@@ -19,11 +19,11 @@
               <div class="action-container">
                 <span>{{item.like}}</span>
                 <span class="post-act">
-                  <img src="images/like-empty.png" alt="">
+                  <img src="assets/images/like-empty.png" alt="">
                 </span>
                 <span>{{item.share}}</span>
                 <span class="post-act">
-                  <img src="images/share.png" alt="">
+                  <img src="assets/images/share.png" alt="">
                 </span>
               </div>
             </div>
@@ -37,7 +37,5 @@
   [infiniteScrollThrottle]="1000"
   (scrolled)="onScrollDown()">
   </div>
-  <div *ngIf="!finished">
-      Loading more movies...
-     </div>
+
 </div>

@@ -14,9 +14,11 @@ import { FoodService } from './services/food.service';
 import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ViewPostComponent } from './components/view-post/view-post.component';
+import { AdminViewPostsComponent } from './components/admin-view-posts/admin-view-posts.component';
 TagInputModule.withDefaults({
   tagInput: {
-      placeholder: 'Nhập loại món ăn'
+    secondaryPlaceholder: 'Nhập loại món ăn'
   }
 });
 @NgModule({
@@ -24,7 +26,9 @@ TagInputModule.withDefaults({
     AppComponent,
     HomeComponent,
     NavComponent,
-    AddPostComponent
+    AddPostComponent,
+    ViewPostCom,
+    AdminViewPostsComponentponent
   ],
   imports: [
     BrowserModule,

@@ -38,8 +38,6 @@ let priceValid = (price) => {
     else {
          if (price < 0) return false;
     }
-   
-
     return true;
 }
 /**Validator */
@@ -51,7 +49,8 @@ var IngredientSchema = new Schema({
     name: { type: String, required: true, validate: nameValidators },
     description: { type: String, required: true, validate: desValidators },
     price: { type: Number, required: true, validate: priceValidators },
-    date: { type: Date, required: true }
+    date: { type: Date, required: true },
+    unit: { type: String, required: true }
 })
 
 module.exports = mongoose.model('Ingredient', IngredientSchema);

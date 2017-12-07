@@ -42,14 +42,14 @@
             <div class="container col-md-offset-1 col-sm-offset-1 col-lg-offset-1 col-md-10 col-sm-10 col-lg-10">
               <div class="title-container form-group">
                 <label for="title">Tiêu đề</label>
-                <input name="title" id="" placeholder="Nhập tiêu đề" [(ngModel)]="title" formControlName="title">
+                <input name="title" id="" placeholder="Nhập tiêu đề" [(ngModel)]="food.title" formControlName="title">
               </div>
               <div class="title-container form-group">
                 <label for="backdrop">Ảnh bìa</label>
-                <input name="backdrop" id="" placeholder="Link ảnh bìa" [(ngModel)]="backdrop" formControlName="backdrop">
+                <input name="backdrop" id="" placeholder="Link ảnh bìa" [(ngModel)]="food.backdrop" formControlName="backdrop">
               </div>
               <div class="image-container form-group">
-                <img height="" width="" id='img-upload' src="{{backdrop}}" />
+                <img height="" width="" id='img-upload' src="{{food.backdrop}}" />
               </div>
               <div class="tag-container form-group">
                 <label for="tagsinput">Loại món ăn</label>
@@ -60,7 +60,7 @@
                 <label for="content">Nội dung</label>
               </div>
               <div class="editor-container form-group">
-                <ckeditor [(ngModel)]="body" formControlName="body">
+                <ckeditor [(ngModel)]="food.body" formControlName="body">
                 </ckeditor>
               </div>
 

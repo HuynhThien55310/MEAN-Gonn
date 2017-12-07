@@ -76,12 +76,13 @@ exports.searchFood = (req, res) => {
             res.json({success: true, foods: foods});
         })
     }else {
-        Food.find({"title": new RegExp(req.param('title'), 'i'), "type": req.param('type')}, (err, foods) => {
+        Food.find({"title": new RegExp(title, 'i'), "type": new RegExp(type, 'i')}, (err, foods) => {
             if (err){
                 return res.json({success: false, err: err});
             }
             console.log(foods);
             res.json({success: true, foods: foods});
         })
+
     }
 }

@@ -19,4 +19,10 @@ export class FoodService {
     return this._http.post('/food', food)
       .map(res => res.json());
   }
+
+  updatePost(food, id: String) {
+    return this._http.put('/api/food/' + id, food)
+    .map(res => res.json());
+  }
+
 }

@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ViewPostComponent } from './components/view-post/view-post.component';
 import { AdminViewPostsComponent } from './components/admin-view-posts/admin-view-posts.component';
+import { AddIngredientComponent } from './components/add-ingredient/add-ingredient.component';
 TagInputModule.withDefaults({
   tagInput: {
     secondaryPlaceholder: 'Nhập loại món ăn'
@@ -27,8 +28,9 @@ TagInputModule.withDefaults({
     HomeComponent,
     NavComponent,
     AddPostComponent,
-    ViewPostCom,
-    AdminViewPostsComponentponent
+    ViewPostComponent,
+    AdminViewPostsComponent,
+    AddIngredientComponent
   ],
   imports: [
     BrowserModule,

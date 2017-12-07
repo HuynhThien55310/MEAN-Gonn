@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { NavComponent } from './components/nav/nav.component';
 import { AddPostComponent } from './components/add-post/add-post.component';
-import { CKEditorModule } from 'ng2-ckeditor';
 import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FoodService } from './services/food.service';
@@ -17,6 +16,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ViewPostComponent } from './components/view-post/view-post.component';
 import { AdminViewPostsComponent } from './components/admin-view-posts/admin-view-posts.component';
 import { AddIngredientComponent } from './components/add-ingredient/add-ingredient.component';
+import { CKEditorModule } from 'ng2-ckeditor';
 TagInputModule.withDefaults({
   tagInput: {
     secondaryPlaceholder: 'Nhập loại món ăn'

@@ -1,3 +1,4 @@
+import { IngredientService } from './services/ingredient.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -44,7 +45,7 @@ TagInputModule.withDefaults({
     ReactiveFormsModule,
     InfiniteScrollModule
   ],
-  providers: [FoodService],
+  providers: [FoodService, IngredientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

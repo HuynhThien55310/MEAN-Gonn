@@ -47,6 +47,7 @@ const priceValidators = [{ validator: priceValid, message: "Price can not be les
 
 var IngredientSchema = new Schema({
     name: { type: String, required: true, validate: nameValidators },
+    backdrop: { type: String, required: true},
     description: { type: String, required: true, validate: desValidators },
     price: { type: Number, required: true, validate: priceValidators },
     date: { type: Date, required: true },

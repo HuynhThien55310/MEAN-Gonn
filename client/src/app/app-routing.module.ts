@@ -7,6 +7,10 @@ import { AdminViewPostsComponent } from './components/admin-view-posts/admin-vie
 
 const appRoutes: Routes = [
   {
+    path: 'admin',
+    component: AdminViewPostsComponent
+  },
+  {
     path: 'admin/add-post',
     component: AddPostComponent
   },

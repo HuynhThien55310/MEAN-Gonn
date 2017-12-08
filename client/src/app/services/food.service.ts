@@ -16,7 +16,7 @@ export class FoodService {
   }
 
   createPost(food) {
-    return this._http.post('/food', food)
+    return this._http.post('/api/food', food)
       .map(res => res.json());
   }
 

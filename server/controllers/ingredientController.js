@@ -23,14 +23,19 @@ exports.createIngredient = (req, res) => {
           res.json({ success: false, message: "Giá nguyên liệu phải là số" });
         } else if (!req.body.unit) {
           res.json({ success: false, message: "Đơn vị không được trống" });
-        } else {
+        } else if (!req.body.backdrop) {
+            res.json({ success: false, message: "Ảnh bìa không được trống" });      
+        }
+        else
+        {
           var currentDay = new Date();
           let ingredient = new Ingredient({
             name: req.body.name,
             description: req.body.description,
             price: req.body.price,
             date: currentDay,
-            unit: req.body.unit
+            unit: req.body.unit,
+            backdrop: req.body.backdrop
           });
           ingredient.save((err, ingredient) => {
             if (err) res.send(err);
@@ -87,7 +92,8 @@ exports.updateIngredient = (req, res) => {
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
-        unit: req.body.unit
+        unit: req.body.unit,
+        backdrop: req.body.backdrop
       }
     },
     { new: true },

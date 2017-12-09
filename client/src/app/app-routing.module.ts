@@ -12,6 +12,7 @@ import { ActiveAccountComponent } from './components/active-account/active-accou
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component'
 import { AdminViewPostsComponent } from './components/admin-view-posts/admin-view-posts.component';
 import { HomeIngredientComponent } from './components/home-ingredient/home-ingredient.component';
+import { ViewIngredientComponent } from './components/view-ingredient/view-ingredient.component';
 
 
 
@@ -43,6 +44,10 @@ const appRoutes: Routes = [
   {
     path: 'food/:id',
     component: ViewPostComponent
+  },
+  {
+    path: 'ingredient/:id',
+    component: ViewIngredientComponent
   },
   {
     path: 'ingredients',

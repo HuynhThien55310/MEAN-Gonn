@@ -28,6 +28,8 @@ import { AdminViewPostsComponent } from './components/admin-view-posts/admin-vie
 import { AddIngredientComponent } from './components/add-ingredient/add-ingredient.component';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { HomeIngredientComponent } from './components/home-ingredient/home-ingredient.component';
+import { ViewIngredientComponent } from './components/view-ingredient/view-ingredient.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 TagInputModule.withDefaults({
   tagInput: {
@@ -49,7 +51,9 @@ TagInputModule.withDefaults({
     ViewPostComponent,
     AdminViewPostsComponent,
     AddIngredientComponent,
-    HomeIngredientComponent
+    HomeIngredientComponent,
+    ViewIngredientComponent,
+    CommentComponent
 
   ],
   imports: [

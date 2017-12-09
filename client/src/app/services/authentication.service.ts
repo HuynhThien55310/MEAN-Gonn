@@ -10,6 +10,10 @@ export class AuthenticationService {
   options;
   constructor(private http: Http) { }
 
+
+  checkCurrentUser(token:String){
+    return this.http.get('/user/checkuser/'+token).map(res=>res.json());
+  }
   resetPassword(token: String) {
     return this.http.get('/user/reset/'+ token)
     .map(res => res.json());
@@ -26,14 +30,19 @@ export class AuthenticationService {
 
 
 
+
   login(user){
     return this.http.post(this.domain + '/user/login',user).map(res=>res.json());
   }
-  storeUserData(token,user){
+  logout() {
+    this.authToken = null; // Set token to null
+    localStorage.clear(); // Clear local storage
+  }
+  storeUserData(token){
     localStorage.setItem('token',token);
-    localStorage.setItem('user',JSON.stringify(user));
+   // localStorage.setItem('user',JSON.stringify(user));
     this.authToken=token;
-    this.user=user;
+ //   this.user=user;
   }
   createAuthenticationHeaders(){
     this.loadToken();

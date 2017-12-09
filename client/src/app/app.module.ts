@@ -21,7 +21,7 @@ import { ActiveAccountComponent } from './components/active-account/active-accou
 import { ActivationService} from './services/activation.service';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { FacebookModule } from 'ngx-facebook';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ViewPostComponent } from './components/view-post/view-post.component';
 import { AdminViewPostsComponent } from './components/admin-view-posts/admin-view-posts.component';
@@ -30,6 +30,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { HomeIngredientComponent } from './components/home-ingredient/home-ingredient.component';
 import { ViewIngredientComponent } from './components/view-ingredient/view-ingredient.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { UserService } from './services/user.service';
 
 TagInputModule.withDefaults({
   tagInput: {
@@ -41,7 +42,6 @@ TagInputModule.withDefaults({
     AppComponent,
     HomeComponent,
     NavComponent,
-
     LoginComponent,
     SignupComponent,
     ForgetpasswordComponent,
@@ -69,7 +69,7 @@ TagInputModule.withDefaults({
     InfiniteScrollModule,
     FacebookModule.forRoot()
   ],
-  providers: [FoodService,AuthenticationService,ActivationService,IngredientService],
+  providers: [FoodService, AuthenticationService, ActivationService, IngredientService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

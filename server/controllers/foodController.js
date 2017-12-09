@@ -26,7 +26,7 @@ exports.getFoodList = (req, res) => {
         if(err){
             return  res.json({success: false, err: err});
         }
-        console.log(foods);
+        // console.log(foods);
         if (foods.length < 12){
             res.json({success: true, foods: foods, isEnd: true, size: foods.length});
         } else {
@@ -72,7 +72,7 @@ exports.searchFood = (req, res) => {
             if (err){
                 return res.json({success: false, err: err});
             }
-            console.log("all");
+            // console.log("all");
             res.json({success: true, foods: foods});
         })
     }else {
@@ -80,7 +80,7 @@ exports.searchFood = (req, res) => {
             if (err){
                 return res.json({success: false, err: err});
             }
-            console.log(foods);
+            // console.log(foods);
             res.json({success: true, foods: foods});
         })
 

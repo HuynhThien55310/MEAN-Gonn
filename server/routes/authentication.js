@@ -20,6 +20,8 @@ module.exports=function(router){
     router.route('/reset').put(User.resetPassword);
     router.route('/reset/:token').get(User.resetPasswordGet);
     router.route('/confirmreset').put(User.savePassword);
+    router.route('/getuser/:token').get(User.getUser);
+    router.route('/checkuser/:token').get(User.checkCurrentUser);
     
 
    return router;

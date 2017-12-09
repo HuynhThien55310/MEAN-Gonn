@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FoodService } from '../../services/food.service';
+import { ActivatedRoute, Params, Router, UrlSegment } from '@angular/router';
+import { AuthenticationService } from '../../services/authentication.service'
+import {  } from '../../services/authentication.service'
 @Component({
   selector: 'app-admin-view-posts',
   templateUrl: './admin-view-posts.component.html',
@@ -10,7 +13,26 @@ export class AdminViewPostsComponent implements OnInit {
   items = [];
   page = 1;
   isEnd = false;
-  constructor(private _foodService: FoodService) {
+  constructor(private _foodService: FoodService,
+    private router:Router,
+    private authenService:AuthenticationService) {
+    const token = localStorage.getItem('token');
+    if(token){
+      this.authenService.checkCurrentUser(token).subscribe(res=>{
+        if(!res.success){
+          setTimeout(()=>{
+            this.router.navigate(['/home'])
+          },0);
+        }
+      })
+      
+    }
+    else{
+      setTimeout(()=>{
+        this.router.navigate(['/home'])
+      },0);
+      
+    }
     this.fetchPost();
    }
 

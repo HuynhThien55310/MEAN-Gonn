@@ -1,9 +1,8 @@
 import { Component, OnInit,NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service'
-
 import { ActivatedRoute, Params, Router, UrlSegment } from '@angular/router';
-//import { AuthService, AppGlobals } from 'angular2-google-login';
+
 import { UserService } from '../../services/user.service'
 import { FacebookService, LoginResponse, LoginOptions, UIResponse, UIParams, FBVideoComponent } from 'ngx-facebook';
 @Component({
@@ -99,6 +98,7 @@ export class LoginComponent implements OnInit {
         this.messageClass = 'alert alert-success'; // Set a success class
         this.message = data.message; // Set a success message
         this.authenService.storeUserData(data.token);
+        this.authenService.createAuthenticationHeaders();
         setTimeout(()=>{
           console.log(data);
           this.router.navigate(['/home'])

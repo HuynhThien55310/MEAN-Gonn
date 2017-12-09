@@ -30,6 +30,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { HomeIngredientComponent } from './components/home-ingredient/home-ingredient.component';
 import { UserService } from './services/user.service';
 
+
 TagInputModule.withDefaults({
   tagInput: {
     secondaryPlaceholder: 'Nhập loại món ăn'
@@ -59,6 +60,8 @@ TagInputModule.withDefaults({
     RouterModule,
     FormsModule,
     CKEditorModule,
+
+  
     TagInputModule,
     BrowserAnimationsModule,
     HttpModule,

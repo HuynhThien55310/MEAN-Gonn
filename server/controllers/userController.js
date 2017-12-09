@@ -17,10 +17,7 @@ var options = {
 
 var client = nodemailer.createTransport(sgTransport(options));
 
-
-
 exports.resgisterUser = (req, res) => {
-
     if (!req.body.email) {
         res.send({ success: false, message: "You must provide an email" });
     } else {
@@ -42,9 +39,8 @@ exports.resgisterUser = (req, res) => {
                         firstname: req.body.firstname,
                         lastname: req.body.lastname,
                         password: req.body.password,
-                        role: req.body.role,
                         temporarytoken: tempToken,
-                        birthday:req.body.birthday
+                        birthday: req.body.birthday
                     });
                     user.save((err) => {
                         if (err) {
@@ -138,7 +134,7 @@ exports.postLoginUser = (req, res) => {
                         }
                         //login with token
                         else {
-                            var token = jwt.sign({ userID:user._id}, secret, { expiresIn: '24h' });
+                            var token = jwt.sign({ userID: user._id }, secret, { expiresIn: '24h' });
                             req.session.user = user;
                             res.json({ success: true, message: "Login Successfully...", token: token, user: user.email })
                             //  res.redirect('/index');
@@ -247,7 +243,7 @@ exports.activeUser = (req, res) => {
                             if (err) console.log(err); // If unable to send e-mail, log error info to console/terminal
                         });
                         // res.json({ success: true, message: 'Account activated!' }); // Return success message to controller
-                        res.json({success:true,message:"Tài khoản đã kích hoạt thành công."})
+                        res.json({ success: true, message: "Tài khoản đã kích hoạt thành công." })
                     });
 
 
@@ -273,7 +269,7 @@ exports.resetPassword = (req, res) => {
                 }
                 else {
                     console.log(user)
-                  
+
 
                     var email = {
                         from: 'Localhost Staff, staff@localhost.com',
@@ -314,25 +310,66 @@ exports.resetPasswordGet = (req, res) => {
     });
 }
 
-exports.getUser =(req,res)=>{
+exports.getUser = (req, res) => {
     var token = req.params.token;
     console.log(token);
-   
+
     if (!token) {
         res.json({ success: false, message: 'No token provided' }); // Return error
-      } else {
+    } else {
         // Verify the token is valid
         jwt.verify(token, secret, (err, decoded) => {
-          // Check if error is expired or invalid
-          if (err) {
-            res.json({ success: false, message: 'Token invalid: ' + err }); // Return error for token validation
-          } else {
-              console.log(decoded);
-              res.json({ success:true,message:decoded});
-           
-          }
+            // Check if error is expired or invalid
+            if (err) {
+                res.json({ success: false, message: 'Token invalid: ' + err }); // Return error for token validation
+            } else {
+                console.log(decoded);
+                res.json({ success: true, message: decoded });
+
+            }
         });
-      }
+    }
+}
+
+exports.checkCurrentUser = (req, res) => {
+    const token = req.params.token;
+    if (!token) {
+        res.json({ success: false, message: 'No token provided' }); // Return error
+    } else {
+        // Verify the token is valid
+        jwt.verify(token, secret, (err, decoded) => {
+            // Check if error is expired or invalid
+            if (err) {
+                res.json({ success: false, message: 'Token invalid: ' + err }); // Return error for token validation
+            } else {
+                if (!decoded.userID) {
+                    res.json({ success: false, message: 'Token invalid: ' + err });
+                }
+                else {
+                    console.log(decoded);
+                    User.findOne({ _id: decoded.userID }).select('role').exec(function (err, user) {
+                        if (err) {
+                            res.json({ success: false, message: "User not found" });
+                        }
+                        else
+                         {
+                            if (user.role != "admin") {
+                                res.json({ success: false, message: "User not be administrator.." })
+                            }
+                            else {
+                                res.json({ success: true, message: "Ok vo" })
+                            }
+                        }
+                    });
+                    //  res.json({ success:true,message:decoded});
+                }
+
+
+            }
+        });
+    }
+
+
 }
 
 exports.savePassword = (req, res) => {

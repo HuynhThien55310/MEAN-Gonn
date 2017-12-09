@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../services/authentication.service'
 
 import { ActivatedRoute, Params, Router, UrlSegment } from '@angular/router';
 //import { AuthService, AppGlobals } from 'angular2-google-login';
+import { UserService } from '../../services/user.service'
 import { FacebookService, LoginResponse, LoginOptions, UIResponse, UIParams, FBVideoComponent } from 'ngx-facebook';
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
     private authenService: AuthenticationService,
     private router:Router, private zone: NgZone,
     private fb: FacebookService,
+    private userService:UserService,
     private route: ActivatedRoute){
     this.createForm();
     console.log('Initializing Facebook');
@@ -39,6 +41,7 @@ export class LoginComponent implements OnInit {
     // AppGlobals.GOOGLE_CLIENT_ID = '761282640471-mdi9sb06l1d22fojkn5le7r7ps9obq2n.apps.googleusercontent.com';
     // this.getData();
     // setTimeout(() => { this.googleAuthenticate() }, 50);
+
   }
 
   share() {
@@ -76,7 +79,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  getData() {
+  getData() {    
     this.token = localStorage.getItem('token');
     this.imageURL = localStorage.getItem('image');
     this.name = localStorage.getItem('name');
@@ -95,7 +98,7 @@ export class LoginComponent implements OnInit {
       else{
         this.messageClass = 'alert alert-success'; // Set a success class
         this.message = data.message; // Set a success message
-        this.authenService.storeUserData(data.token,data.user);
+        this.authenService.storeUserData(data.token);
         setTimeout(()=>{
           console.log(data);
           this.router.navigate(['/home'])

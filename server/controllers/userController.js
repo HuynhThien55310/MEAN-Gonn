@@ -138,7 +138,7 @@ exports.postLoginUser = (req, res) => {
                         }
                         //login with token
                         else {
-                            var token = jwt.sign({ user }, secret, { expiresIn: '24h' });
+                            var token = jwt.sign({ userID:user._id}, secret, { expiresIn: '24h' });
                             req.session.user = user;
                             res.json({ success: true, message: "Login Successfully...", token: token, user: user.email })
                             //  res.redirect('/index');
@@ -312,6 +312,27 @@ exports.resetPasswordGet = (req, res) => {
             }
         });
     });
+}
+
+exports.getUser =(req,res)=>{
+    var token = req.params.token;
+    console.log(token);
+   
+    if (!token) {
+        res.json({ success: false, message: 'No token provided' }); // Return error
+      } else {
+        // Verify the token is valid
+        jwt.verify(token, secret, (err, decoded) => {
+          // Check if error is expired or invalid
+          if (err) {
+            res.json({ success: false, message: 'Token invalid: ' + err }); // Return error for token validation
+          } else {
+              console.log(decoded);
+              res.json({ success:true,message:decoded});
+           
+          }
+        });
+      }
 }
 
 exports.savePassword = (req, res) => {

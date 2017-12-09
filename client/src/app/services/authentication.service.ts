@@ -29,11 +29,11 @@ export class AuthenticationService {
   login(user){
     return this.http.post(this.domain + '/user/login',user).map(res=>res.json());
   }
-  storeUserData(token,user){
+  storeUserData(token){
     localStorage.setItem('token',token);
-    localStorage.setItem('user',JSON.stringify(user));
+   // localStorage.setItem('user',JSON.stringify(user));
     this.authToken=token;
-    this.user=user;
+ //   this.user=user;
   }
   createAuthenticationHeaders(){
     this.loadToken();

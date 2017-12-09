@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FoodService } from '../../services/food.service';
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-admin-view-posts',
+  templateUrl: './admin-view-posts.component.html',
+  styleUrls: ['./admin-view-posts.component.css']
 })
-export class HomeComponent implements OnInit {
+export class AdminViewPostsComponent implements OnInit {
 
   items = [];
   page = 1;
@@ -36,4 +35,5 @@ export class HomeComponent implements OnInit {
   onScrollDown() {
     this.fetchPost();
   }
+
 }

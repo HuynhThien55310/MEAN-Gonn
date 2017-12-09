@@ -50,8 +50,12 @@ h1.b1,h2.b2,h3.b3 {
 	width:100%;
 }
 .header_top{
-
-	padding:2em 0;
+	top: 0;
+	position: fixed;
+	background-color: #f7b0bd;
+	left: 0;
+	width: 100%;
+	z-index: 9999;
 }
 .login a{
 	font-size:13px;
@@ -2499,9 +2503,14 @@ a.add-cart {
 	color: #caccce;
 }
 .header-top {
+	z-index: 9999;
+	top: 0;
+	position: fixed;
+	width: 100%;
 	background-color: #f7b0bd;
 }
 .content {
+	margin-top: 50px;
 	background-color: #f9f9f9;
 	padding-top: 50px;
 	padding-bottom: 50px;
@@ -2676,7 +2685,8 @@ ul.list-content {
 a.post-title-link {
 	color: #7F3A46;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 15px;
+	word-wrap: break-word;
 }
 a.post-title-link:hover {
 	text-decoration: none;
@@ -2738,6 +2748,7 @@ a.owner-name:hover {
 
 /* admin  */
 .admin-container {
+	margin-top: 50px;
 	padding-top: 50px;
 	padding-bottom: 50px;
 	background-color: #f9f9f9;
@@ -2776,6 +2787,7 @@ a.item-link:hover {
 
 }
 .right-section {
+	float: right;
 	padding: 20px 0 15px 0;
 	background-color: #fff;
 	border-radius: 3px;
@@ -2897,7 +2909,7 @@ a.circle {
 /* avatar image end */
 
 /* post detail */
-.cover-container {
+.cover-container {	
 	position: relative;
 	width: 100%;
 	padding-top: 56.25%;

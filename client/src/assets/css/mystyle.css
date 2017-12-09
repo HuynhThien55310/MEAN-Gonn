@@ -1,4 +1,6 @@
+    
 .detail-container {
+    margin-top: 50px;
     background-color: #f9f9f9;
     padding-top: 50px;
 }
@@ -179,11 +181,17 @@ span.cmt-date {
 }
 
 #img-upload{   
-    margin-bottom: 20px;
-    margin-top: 20px;
-    width: 100%;
-    border-radius: 10px;
+    object-fit: cover;    
+    width: 100%; 
+    border: solid 1px #eee;   
     box-shadow: 0px 0px 5px #222;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .image-container label {
@@ -281,6 +289,7 @@ a.admin-ava img {
     border: solid 1px #eee;
     border-top: none;
 }
+
 button#google-login-button {
     background-color: #D9534F;
 }
@@ -305,5 +314,35 @@ button#google-login-button:hover {
 }
 .forgot-pass a:hover {
     text-decoration: none;
-    color: #d22c2c;
+    color: #d22c2c;}
+
+.image-container.form-group {
+    position: relative;
+    padding-top: 56.25%;
+    overflow: auto;
+}
+.tag-wrapper[_ngcontent-c4] {
+    flex-direction: row;
+    display: flex;
+    padding-left: 5px;
+}
+.btn-save button {
+    padding-left: 30px;
+    background-color: #85B7CC;
+    border: solid 1px #85B7CC;
+    transition: all 0.4s;
+    padding-right: 30px;
+    border-radius: 30px;
+}
+.btn-save button:hover {
+    background-color: #aed4e4;
+	border-color: #aed4e4;
+	color: #222222;
+}
+.left-section.col-md-3.col-lg-3 {
+    position: fixed;
+}
+.image-container {
+    background-image: url("https://lh3.googleusercontent.com/5TQ7l4viJspkmksLd_GizIQJSnvOElzsD1k4jGV31OdD5rTrxqmujHzcedqj8n2VZBUzC3FFB5Sl8uTj4O2gYDoyWBrHOYV5OWQ4gaK9uIqwPKZpxL9hF4JA8TlN47sR1sTP3i22M0Q7rdK-wzlYRIcy2ZlKoZ1sLM5LNC4D-DmgtJNQWf7pNOGSrvzfuMEFbngVngIkKOjsFRkkb-if2hIYw5srDceGDJ2lX_7MbHAhwOTeM7PQQIgF5ZwXDd_8lwwshYKwS9haAeCA49eOQ-N_865gm1LMr2LpOXG05NDPVkrYxl5i-W_XINi74UklbU7e-eZ1ZPb-z4XMu8vugVNzvKDdgrNOZz8iQWewU7EteU0Ft5Vh9ntQ5nVF3n0EhDVW0eltj_zKeEfXQWSiSVT2Wv7J1GZFVSqkJvI9qBXAFVeeIrSmC2_qN5VTP0iilAxPyG4WTrOGYB2Nx9--Y4iGEqteGtm95Duf1aN36UD6m7B4CH2iaKsZjurt017oWSzvG2sPOeF-PsLMOViKjLtSU3B9yMBjRHiWS9k4GQe78gW8HwxYsBX8fY8NtbEikfjqlJhtt7dgD1rDLwmlILUkof8y0kuwjKQwhmnolg=w684-h385-no");
+
 }

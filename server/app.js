@@ -58,9 +58,6 @@ commentRouter(app);
 
 app.use('/user',authentication);
 app.use(ingredient);
-
-
-
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, '../client/dist')));
 

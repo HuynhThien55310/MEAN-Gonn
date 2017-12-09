@@ -21,14 +21,19 @@ exports.createFood = (req, res) => {
 
 exports.getFoodList = (req, res) => {
     var page = req.params.page;
-    var skipItem = (page-1) * 10;
+    var skipItem = (page-1) * 12;
     Food.find((err, foods) => {
         if(err){
             return  res.json({success: false, err: err});
         }
         console.log(foods);
-        res.json({success: true, food: food});
-    }).sort({posted: -1}).skip(skipItem).limit(10);
+        if (foods.length < 12){
+            res.json({success: true, foods: foods, isEnd: true, size: foods.length});
+        } else {
+            res.json({success: true, foods: foods, isEnd: false, size: foods.length});
+        }
+       
+    }).sort({_id: -1}).skip(skipItem).limit(12);
 };
 
 exports.deleteFood = (req, res) => {
@@ -71,12 +76,13 @@ exports.searchFood = (req, res) => {
             res.json({success: true, foods: foods});
         })
     }else {
-        Food.find({"title": new RegExp(req.param('title'), 'i'), "type": req.param('type')}, (err, foods) => {
+        Food.find({"title": new RegExp(title, 'i'), "type": new RegExp(type, 'i')}, (err, foods) => {
             if (err){
                 return res.json({success: false, err: err});
             }
             console.log(foods);
             res.json({success: true, foods: foods});
         })
+
     }
 }

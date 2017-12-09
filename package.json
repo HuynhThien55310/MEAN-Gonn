@@ -22,15 +22,18 @@
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.7",
-    "express": "^4.16.1",
+    "express": "^4.16.2",
     "express-session": "^1.15.6",
     "isnumber": "^1.0.0",
     "jsonwebtoken": "^8.1.0",
-    "mongoose": "^4.12.1",
-    "nodemailer": "^4.2.0",
+    "mongoose": "^4.13.6",
+    "nodemailer": "^4.4.0",
     "nodemailer-sendgrid-transport": "^0.2.0",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth": "^1.0.0"
+  },
+  "devDependencies": {
+    "@angular/cli": "^1.5.5"
   }
 }

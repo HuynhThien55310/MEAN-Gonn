@@ -43,7 +43,8 @@ exports.resgisterUser = (req, res) => {
                         lastname: req.body.lastname,
                         password: req.body.password,
                         role: req.body.role,
-                        temporarytoken: tempToken
+                        temporarytoken: tempToken,
+                        birthday:req.body.birthday
                     });
                     user.save((err) => {
                         if (err) {
@@ -80,8 +81,8 @@ exports.resgisterUser = (req, res) => {
                                 from: 'Localhost, dongockhanh3103@gmail.com',
                                 to: user.email,
                                 subject: 'Hello',
-                                text: 'Hello ' + user.firstname + ', thank you for registering at localhost.com. Please click on the following link to complete your activation: http://localhost:8080/user/activate/' + user.temporarytoken,
-                                html: 'Hello<strong> ' + user.firstname + ' ' + user.lastname + '</strong>,<br><br>Thank you for registering at localhost.com. Please click on the link below to complete your activation:<br><br><a href="http://localhost:8080/user/activate/' + user.temporarytoken + '">' + 'http://localhost:8080/user/activate/</a>'
+                                text: 'Hello ' + user.firstname + ', thank you for registering at localhost.com. Please click on the following link to complete your activation: http://localhost:3000/activate/' + user.temporarytoken,
+                                html: 'Hello<strong> ' + user.firstname + ' ' + user.lastname + '</strong>,<br><br>Thank you for registering at localhost.com. Please click on the link below to complete your activation:<br><br><a href="http://localhost:3000/active/' + user.temporarytoken + '">' + 'http://localhost:3000/active/</a>'
 
                             };
 
@@ -122,19 +123,26 @@ exports.postLoginUser = (req, res) => {
             res.json({ success: false, message: "You must provide password" });
         }
         else {
+
             User.findOne({ email: req.body.email }, (err, user) => {
-                if (err) { res.status(500).send({ message: err.message }); }
+                if (err) {
+                    res.status(500).send({ message: err.message });
+                }
                 if (user) {
+
                     const validUser = user.comparePassword(req.body.password);
+
                     if (validUser) {
-
+                        if (!user.active) {
+                            res.json({ success: false, message: "You must active your account. Please check your e-mail..." })
+                        }
                         //login with token
-                        var token = jwt.sign({ user }, secret, { expiresIn: '24h' });
-                        req.session.user = user;
-                        //req.headers["authorization"]=token;
-
-                        res.json({ success: true, message: "Login Successfully...", toke: token })
-                        //  res.redirect('/index');
+                        else {
+                            var token = jwt.sign({ user }, secret, { expiresIn: '24h' });
+                            req.session.user = user;
+                            res.json({ success: true, message: "Login Successfully...", token: token, user: user.email })
+                            //  res.redirect('/index');
+                        }
                     } else {
                         res.json({ success: false, message: "Password or User name was wrong..." })
                     }
@@ -238,7 +246,8 @@ exports.activeUser = (req, res) => {
                         client.sendMail(email, function (err, info) {
                             if (err) console.log(err); // If unable to send e-mail, log error info to console/terminal
                         });
-                        res.json({ success: true, message: 'Account activated!' }); // Return success message to controller
+                        // res.json({ success: true, message: 'Account activated!' }); // Return success message to controller
+                        res.json({success:true,message:"Tài khoản đã kích hoạt thành công."})
                     });
 
 
@@ -261,16 +270,17 @@ exports.resetPassword = (req, res) => {
             user.save(function (err) {
                 if (err) {
                     res.json({ success: false, message: errors })
-
                 }
                 else {
-                    var email = {
-                        from: 'Localhost, weregonnteam@gmail.com',
-                        to: user.email,
-                        subject: 'Gonn reset password',
-                        text: 'Hello ' + user.firstname + ', Your recently requrest a password resetlink: http://localhost:8080/user/reset/' + user.resettoken,
-                        html: 'Hello<strong> ' + user.firstname + ' ' + user.lastname + '</strong>,<br><br>You recently request a password resetlink . Please click on the link below to reset your password<br><br><a href="http://localhost:8080/user/resetpassword/' + user.resettoken + '">' + 'http://localhost:8080/user/resetpassword/</a>'
+                    console.log(user)
+                  
 
+                    var email = {
+                        from: 'Localhost Staff, staff@localhost.com',
+                        to: user.email,
+                        subject: 'Localhost Account Activated',
+                        text: 'Hello Mr/Mrs: ' + user.firstname + ', Your recently requrest a password',
+                        html: 'Hello<strong> ' + user.firstname + ' ' + user.lastname + '</strong>,<br><br>You recently request a password resetlink . Please click on the link below to reset your password<br><br><a href="http://localhost:3000/resetpassword/' + user.resettoken + '">' + 'http://localhost:3000/resetpassword/</a>'
                     };
 
                     client.sendMail(email, function (err, info) {
@@ -281,7 +291,6 @@ exports.resetPassword = (req, res) => {
                             console.log('Message sent: ' + info.response);
                         }
                     });
-
 
                     res.json({ success: true, message: 'Please check your e-mail for password reset link' })
                 }
@@ -306,7 +315,7 @@ exports.resetPasswordGet = (req, res) => {
 }
 
 exports.savePassword = (req, res) => {
-    User.findOne({ email: req.body.email }).select('firstname email name password resettoken').exec(function (err, user) {
+    User.findOne({ resettoken: req.body.resetoken }).select('firstname email name password resettoken').exec(function (err, user) {
         if (err) throw err; // Throw error if cannot connect
         if (req.body.password == null || req.body.password == '') {
             res.json({ success: false, message: 'Password not provided' });

@@ -9,18 +9,17 @@ var FoodSchema = mongoose.Schema({
         }, "Tiêu đề sai định dạng"]
     },
     type: {
-        type: String,
-        required: true,
-        match: [/^[a-zA-Z0-9 ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$/,"Loại món sai định dạng"],
-        validate: [(type) => {
-            return type.length >= 3 && type.length <= 100;
+        type     : Array,
+        required : true,
+        validate: [(array) => {
+            return array.every((v) => typeof v === 'string' && v.length >= 3);
         }, "Loại món sai định dạng"]
     },
     body: {
         type: String,
         required: true
     },
-    date: {
+    posted: {
         type: Date,
         default: Date().toLocaleString()
     },

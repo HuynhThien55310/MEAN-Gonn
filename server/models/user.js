@@ -131,16 +131,17 @@ var UserSchema = new Schema(
         email: { type: String, required: true, unique: true, lowercase: true, validate: emailValidators },
         firstname: { type: String, validate: firstnameValidators, required: true },
         lastname: { type: String, required: true },
-        password: { type: String, required: true, validate: passwordValidators,select:false },
+        password: { type: String, required: true, validate: passwordValidators },
         birthday: { type: Date, default: null },
         gender: { type: String, default: null },
+
         role:{type:String,
              enum:['user','admin'],
             default:'user'},
         active:{type:Boolean,required:true,default:false},
         temporarytoken: { type: String, required: true },
-        resettoken:{type:String,required:false}
-        
+        resettoken:{type:String,required:false},
+        avatar: {type: String, default: "sample.jpg"}
     });
 /**
  * Encode password before save on database
@@ -160,11 +161,8 @@ UserSchema.pre('save', function (next) {
 
 
 
-
-
-UserSchema.methods.comparePassword = function (password) {
-    var user = this;
-    return bcrypt.compareSync(password, user.password);
-};
+UserSchema.methods.comparePassword = function(password) {
+    return bcrypt.compareSync(password, this.password); // Return comparison of login password to password in database (true or false)
+  };
 
 module.exports = mongoose.model('User', UserSchema);

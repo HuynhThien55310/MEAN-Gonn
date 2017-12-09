@@ -1,16 +1,16 @@
 module.exports = function(app) {
     var Food = require('../controllers/foodController');  
-    app.route('/food')
+    app.route('/api/food')
         .post(Food.createFood);
     
-    app.route('/food/:id')
+    app.route('/api/food/:id')
         .get(Food.getFood)
         .put(Food.updateFood)
         .delete(Food.deleteFood);
 
-    app.route('/food/page/:page')
+    app.route('/api/food/page/:page')
         .get(Food.getFoodList);
 
-    app.route('/search/food')
+    app.route('/api/search/food')
         .get(Food.searchFood);
 }

@@ -13,13 +13,13 @@ module.exports=function(router){
     .post(User.updateInfoUser);
 
     router.route('/login')
-    .get(User.getLoginUser)
     .post(User.postLoginUser)
 
     router.route('/activate/:token').get(User.activeUser);
 
-    router.route('/resetpassword').put(User.resetPassword);
-    router.route('/resetpassword/:token').get(User.resetPasswordGet);
+    router.route('/reset').put(User.resetPassword);
+    router.route('/reset/:token').get(User.resetPasswordGet);
+    router.route('/confirmreset').put(User.savePassword);
     
 
    return router;

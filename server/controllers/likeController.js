@@ -8,17 +8,17 @@ exports.hitLike = (req, res) => {
     var foodId = req.body.foodId;
     Like.find({"userId": userId, "foodId": foodId}, (err, result) => {
         if(err){
-            res.send(err);
+            return res.send(err);
         }
         if(result.length == 0){
             
             Like.create(req.body, (err, result) => {
                 if(err){
-                    res.send(err);
+                    return res.send(err);
                 }
                 Food.findById(foodId,(err, food) =>{
                     if(err){
-                        res.send(err);
+                        return res.send(err);
                     }
                     console.log(food);
                     food.like = food.like + 1;
@@ -30,11 +30,11 @@ exports.hitLike = (req, res) => {
             //Already like -> unlike
             Like.remove({"userId": userId, "foodId": foodId}, (err, result) => {
                 if(err){
-                    res.send(err);
+                    return res.send(err);
                 }
                 Food.findById(foodId,(err, food) =>{
                     if(err){
-                        res.send(err);
+                        return res.send(err);
                     }
                     console.log(food);
                     food.like = food.like - 1;
@@ -43,6 +43,5 @@ exports.hitLike = (req, res) => {
                 });
             });
         }
-        //res.json(result);
     })
 }

@@ -3,19 +3,21 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
-const port = 8080;
+const port = 3000;
 const app = express();
 var ingredient=require('./routes/ingredientRouters')(router);
 const authentication=require('./routes/authentication')(router);
-const afterLogin=require('./routes/index')(router);
 const session = require('express-session');
 const passport = require('passport');
 const social= require('./passport/passport')(app,passport);
-
-var foodRouter = require('./routes/foodRoutes.js');  
-var likeRouter = require('./routes/likeRoutes.js');
+const foodRouter = require('./routes/foodRoutes.js');  
+const likeRouter = require('./routes/likeRoutes.js');
+const commentRouter = require('./routes/commentRoutes.js')
 const cookieParser = require('cookie-parser');
+
 const AuthUtils=require('../server/Utilities/AuthenticationUtil');
+const path = require('path');
+const http = require('http');
 
 
 
@@ -37,6 +39,7 @@ app.listen(port, () => {
     });
 foodRouter(app);
 likeRouter(app);
+commentRouter(app);
 /*
  *  Database configure
  */
@@ -54,11 +57,18 @@ likeRouter(app);
 
 
 app.use('/user',authentication);
-app.use('/index',AuthUtils.ensureToken,afterLogin);
-app.use('/ingredient',AuthUtils.ensureToken,ingredient);
+app.use(ingredient);
 
 
-app.get('*',(req,res)=>{
-    res.redirect("/index")
-})
+
+// Angular DIST output folder
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+// // Send all other requests to the Angular app
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'))
+});
+
+
+const server = http.createServer(app);
 

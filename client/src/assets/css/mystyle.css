@@ -39,8 +39,7 @@
     border-top: none;
     border: solid 1px #ccc;
     background-color: #fff;
-    padding: 10px;
-    padding-top: 30px !important;
+    padding: 10px;  
 }
 .content-detail {
     text-align: justify;
@@ -344,5 +343,8 @@ button#google-login-button:hover {
 }
 .image-container {
     background-image: url("https://lh3.googleusercontent.com/5TQ7l4viJspkmksLd_GizIQJSnvOElzsD1k4jGV31OdD5rTrxqmujHzcedqj8n2VZBUzC3FFB5Sl8uTj4O2gYDoyWBrHOYV5OWQ4gaK9uIqwPKZpxL9hF4JA8TlN47sR1sTP3i22M0Q7rdK-wzlYRIcy2ZlKoZ1sLM5LNC4D-DmgtJNQWf7pNOGSrvzfuMEFbngVngIkKOjsFRkkb-if2hIYw5srDceGDJ2lX_7MbHAhwOTeM7PQQIgF5ZwXDd_8lwwshYKwS9haAeCA49eOQ-N_865gm1LMr2LpOXG05NDPVkrYxl5i-W_XINi74UklbU7e-eZ1ZPb-z4XMu8vugVNzvKDdgrNOZz8iQWewU7EteU0Ft5Vh9ntQ5nVF3n0EhDVW0eltj_zKeEfXQWSiSVT2Wv7J1GZFVSqkJvI9qBXAFVeeIrSmC2_qN5VTP0iilAxPyG4WTrOGYB2Nx9--Y4iGEqteGtm95Duf1aN36UD6m7B4CH2iaKsZjurt017oWSzvG2sPOeF-PsLMOViKjLtSU3B9yMBjRHiWS9k4GQe78gW8HwxYsBX8fY8NtbEikfjqlJhtt7dgD1rDLwmlILUkof8y0kuwjKQwhmnolg=w684-h385-no");
-
+}
+.top-left span {
+    font-weight: bold;
+    color: #800080;
 }

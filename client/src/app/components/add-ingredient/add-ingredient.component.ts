@@ -10,10 +10,10 @@ import { IngredientService } from '../../services/ingredient.service';
 export class AddIngredientComponent implements OnInit {
   form: FormGroup;
   id: undefined;
-  ; = {
+  ingre = {
     name: '',
     description: '',
-    price: Number,
+    price: '',
     unit: '',
     backdrop: ''
   };
@@ -35,33 +35,22 @@ export class AddIngredientComponent implements OnInit {
     console.log(this.id);
     if (this.id !== undefined) {
       this.ingreService.getIngre(this.id).subscribe(res => {
-        this.food = res.food;
-        for (let i = 0; i < this.food.type.length; i++) {
-          this.type.push({display: this.food.type[i],
-                          value: this.food.type[i]});
-      }
+        this.ingre = res.ingredient;
       });
     }
   }
 
   onSubmit() {
     // parse taginput to string array
-    console.log(this.type);
-    const temp = [];
-    for (let i = 0; i < this.type.length; i++) {
-        temp.push(this.type[i].value);
-    }
-    this.food.type = temp;
-    console.log(temp);
-    console.log(this.food);
+    console.log(this.ingre);
     if (this.id !== undefined) {
         // update post
-      this.ingreService.updateIngre(this.food, this.id).subscribe(res => {
+      this.ingreService.updateIngre(this.ingre, this.id).subscribe(res => {
         console.log(res);
       });
     } else {
       // create post
-      this.ingreService.createIngre(this.food).subscribe(res => {
+      this.ingreService.createIngre(this.ingre).subscribe(res => {
         console.log(res);
       });
     }

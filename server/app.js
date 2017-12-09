@@ -7,7 +7,6 @@ const port = 3000;
 const app = express();
 var ingredient=require('./routes/ingredientRouters')(router);
 const authentication=require('./routes/authentication')(router);
-const afterLogin=require('./routes/index')(router);
 const session = require('express-session');
 const passport = require('passport');
 const social= require('./passport/passport')(app,passport);
@@ -51,8 +50,7 @@ commentRouter(app);
  * Authentication
  */
 app.use('/user',authentication);
-app.use('/index',afterLogin);
-app.use('/ingredient',ingredient);
+app.use(ingredient);
 
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, '../client/dist')));

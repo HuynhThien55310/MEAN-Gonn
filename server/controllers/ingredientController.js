@@ -38,41 +38,46 @@ exports.createIngredient = (req, res) => {
             backdrop: req.body.backdrop
           });
           ingredient.save((err, ingredient) => {
-            if (err) res.send(err);
-            res.json(ingredient);
+            if (err) return res.json({success: false, err: err});
+            res.json({success: true, ingredient: ingredient});
           });
         }
       }
     }
   }
-  // }
-  // else {
-  //     res.send("Login ? ")
-  // }
+  
 };
 
 exports.getIngredientList = (req, res) => {
+  var page = req.params.page;
+  var skipItem = (page-1) * 12;
   Ingredient.find((err, ingredients) => {
-    if (err) {
-      return res.send(err);
-    }
-    res.json(ingredients);
-  });
+      if(err){
+          return  res.json({success: false, err: err});
+      }
+      console.log(ingredients);
+      if (ingredients.length < 12){
+          res.json({success: true, ingredients: ingredients, isEnd: true, size: ingredients.length});
+      } else {
+          res.json({success: true, ingredients: ingredients, isEnd: false, size: ingredients.length});
+      }
+     
+  }).sort({_id: -1}).skip(skipItem).limit(12);
 };
 
 exports.getIngredientByName = (req, res) => {
   var searchIng = req.param("name");
   Ingredient.find({ name: new RegExp(searchIng, "i") }, (err, ingredients) => {
-    if (err) res.send(err);
-    res.json(ingredients);
+    if (err) return res.json({success: false, err: err});
+    res.json({success: true, ingredient: ingredient});
   });
 };
 
 exports.getIngredientByID = (req, res) => {
   // console.log(req.params.id);
   Ingredient.findById(req.params.id, (err, ingredient) => {
-    if (err) res.send(err);
-    res.json(ingredient);
+    if (err) return res.json({success: false, err: err});
+    res.json({success: true, ingredient: ingredient});
   });
 };
 
@@ -98,8 +103,8 @@ exports.updateIngredient = (req, res) => {
     },
     { new: true },
     (err, ingredient) => {
-      if (err) res.send(err);
-      res.json(ingredient);
+      if (err) return res.json({success: false, err: err});
+      res.json({success: true, ingredient: ingredient});
     }
   );
 };

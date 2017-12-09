@@ -12,7 +12,7 @@ export class IngredientService {
     }
 
     getIngres(page: Number) {
-      return this._http.get('/api/ingredients' + page)
+      return this._http.get('/api/ingredients/page/' + page)
         .map(res => res.json());
     }
 

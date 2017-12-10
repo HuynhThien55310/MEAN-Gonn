@@ -25,4 +25,9 @@ export class FoodService {
     .map(res => res.json());
   }
 
+  searchPost(title: String) {
+    return this._http.get('/api/search/food?title=' + title + '&type=')
+      .map(res => res.json());
+  }
+
 }

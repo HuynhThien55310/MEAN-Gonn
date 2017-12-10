@@ -1,7 +1,9 @@
+import { ObjectID } from './C:/Users/MrThien/AppData/Local/Microsoft/TypeScript/2.6/node_modules/@types/bson';
+
 const mongoose = require('mongoose');
 var CommentSchema = mongoose.Schema({
     foodId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     posted: {
@@ -9,7 +11,7 @@ var CommentSchema = mongoose.Schema({
         default: Date().toLocaleString()
     },
     userId: {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
             required: true
     },
     userName: {

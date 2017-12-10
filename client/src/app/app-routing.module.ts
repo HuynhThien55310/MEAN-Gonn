@@ -1,3 +1,4 @@
+import { SearchComponent } from './components/search/search.component';
 
 import { AddIngredientComponent } from './components/add-ingredient/add-ingredient.component';
 import { ViewPostComponent } from './components/view-post/view-post.component';
@@ -72,9 +73,13 @@ const appRoutes: Routes = [
     component: ActiveAccountComponent
   },
   {
-    path:'resetpassword/:token',
-    component:ResetpasswordComponent
+    path: 'resetpassword/:token',
+    component: ResetpasswordComponent
 
+  },
+  {
+    path: 'search/food/:title',
+    component: SearchComponent
   },
   {
     path: '',

@@ -31,6 +31,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { HomeIngredientComponent } from './components/home-ingredient/home-ingredient.component';
 import { ViewIngredientComponent } from './components/view-ingredient/view-ingredient.component';
 import { UserService } from './services/user.service';
+import { SearchComponent } from './components/search/search.component';
 
 TagInputModule.withDefaults({
   tagInput: {
@@ -52,7 +53,8 @@ TagInputModule.withDefaults({
     AdminViewPostsComponent,
     AddIngredientComponent,
     HomeIngredientComponent,
-    ViewIngredientComponent
+    ViewIngredientComponent,
+    SearchComponent
 
   ],
   imports: [

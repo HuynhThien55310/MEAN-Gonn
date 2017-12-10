@@ -11,7 +11,7 @@
         <div class="row post-meta">
 
           <div class="date-of-post col-sm-6 col-md-6 col-lg-6">
-            <h3>{{post.posted}}</h3>
+            <h3>{{post.posted | date:'short'}}</h3>
           </div>
         </div>
         <div class="row content-detail" [innerHTML]="post.body">
@@ -23,6 +23,7 @@
       <div class="row social-interact-container">
         <div class="post-interact-container col-md-4 col-lg-4 col-sm-4 col-xs-4">
           <span class="post-act-detail">
+            <a href=""></a>
             <img src="assets/images/like-empty.png" alt="">{{post.like}}</span>
         </div>
         <div class="post-interact-container col-md-4 col-lg-4 col-sm-4 col-xs-4">

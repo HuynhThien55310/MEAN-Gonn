@@ -45,7 +45,7 @@ export class SignupComponent implements OnInit {
       //Firstname input
       firstname: ['', Validators.compose([
         Validators.required, // Field is required
-        Validators.minLength(5), // Minimum length is 5 characters
+        Validators.minLength(3), // Minimum length is 5 characters
         Validators.maxLength(30),
         this.validateFirstname
       ])],

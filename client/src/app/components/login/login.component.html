@@ -22,7 +22,7 @@
                     <input type="email" formControlName="email" class="form-control" id="signupEmail" placeholder="Email">
                     <!-- Validation -->
                     <ul class="help-block list-error">
-                        <li *ngIf="formSignIn.controls.email.errors?.required && formSignIn.controls.email.dirty">This field is required.</li>
+                        <li *ngIf="formSignIn.controls.email.errors?.required && formSignIn.controls.email.dirty">Yêu cầu nhập e-mail</li>
                     </ul>
                 </div>
                 <div [ngClass]="{'has-error': formSignIn.controls.password.errors && formSignIn.controls.password.dirty, 'has-success': formSignIn.controls.password.valid && formSignIn.controls.password.dirty }"
@@ -30,7 +30,7 @@
                     <input type="password" formControlName="password" class="form-control" id="signupPassword" placeholder="Mật khẩu">
                     <!-- Validation -->
                     <ul class="help-block list-error">
-                        <li *ngIf="formSignIn.controls.password.errors?.required && formSignIn.controls.password.dirty">This field is required.</li>
+                        <li *ngIf="formSignIn.controls.password.errors?.required && formSignIn.controls.password.dirty">Yêu cầu nhập mật khẩu.</li>
                     </ul>
                 </div>
                 <div class="forgot-pass">
@@ -39,27 +39,16 @@
                 <div class="btn-group-signup btn-center">
                     <button type="submit" class="btn btn-primary btn-signup ">Đăng nhập</button>
                 </div>
-
-
             </form>
-
-            <div class="btn-center btn-right">
-                <button *ngIf="!token" id="google-login-button" class="btn btn-primary btn-signup btn-google btn-center" (click)="googleAuthenticate()">Google Sign-In</button>
-            </div>
-
         </div>
         <!--link to sign up -->
         <div class="signin">
             <p>Chưa có tài khoản?</p>
             <a routerLink="/signup" href="">Đăng kí</a>
-
-            <!-- <button (click)="share()" class="btn btn-lg btn-primary btn-block">
-                Share dialog
-            </button> -->
         </div>
         <!--link to sign up end -->
 
 
     </div>
 </div>
-<!-- sign in content end -->
+<!-- sign in content end -->`

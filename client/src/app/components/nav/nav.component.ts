@@ -14,6 +14,7 @@ export class NavComponent implements OnInit {
     if(token){
       this.Authenlogin=true;
       this.username=localStorage.getItem("username");
+      this.avatar =localStorage.getItem("avatar");
     }else{
       this.Authenlogin=false;
     }

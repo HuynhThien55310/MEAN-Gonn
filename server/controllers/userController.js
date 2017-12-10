@@ -45,7 +45,7 @@ exports.resgisterUser = (req, res) => {
                     user.save((err) => {
                         if (err) {
                             if (err.code === 11000) {
-                                res.send({ success: false, message: 'Username or e-mail already exists' })
+                                res.send({ success: false, message: 'Tên người dùng hoặc e-mail đã tồn tại' })
                             }
                             else {
                                 if (err.errors) {
@@ -92,7 +92,7 @@ exports.resgisterUser = (req, res) => {
                             });
 
 
-                            res.json({ success: true, message: "Signup successfully! Please check your email for activation link", data: user });
+                            res.json({ success: true, message: "Đăng kí thành công! Vui lòng tới kiểm tra e-mail để kích hoạt tài khoản", data: user });
                         }
 
                     });
@@ -112,11 +112,11 @@ exports.getLoginUser = (req, res) => {
 
 exports.postLoginUser = (req, res) => {
     if (!req.body.email) {
-        res.json({ success: false, message: "You must provide email" });
+        res.json({ success: false, message: "Bạn phải cung cấp e-mail" });
     }
     else {
         if (!req.body.password) {
-            res.json({ success: false, message: "You must provide password" });
+            res.json({ success: false, message: "Bạn phải cung cấp mật khẩu" });
         }
         else {
 
@@ -130,21 +130,21 @@ exports.postLoginUser = (req, res) => {
 
                     if (validUser) {
                         if (!user.active) {
-                            res.json({ success: false, message: "You must active your account. Please check your e-mail..." })
+                            res.json({ success: false, message: "Bạn phải kích hoạt tài khoản! Vui lòng kiểm tra e-mail ..." })
                         }
                         //login with token
                         else {
                             var token = jwt.sign({ userID: user._id }, secret, { expiresIn: '24h' });
                             req.session.user = user;
-                            res.json({ success: true, message: "Login Successfully...", token: token, firstname:user.firstname, lastname:user.lastname,avatar:user.avatar })
+                            res.json({ success: true, message: "Đăng nhập thành công...", token: token, firstname:user.firstname, lastname:user.lastname,avatar:user.avatar })
                             //  res.redirect('/index');
                         }
                     } else {
-                        res.json({ success: false, message: "Password or User name was wrong..." })
+                        res.json({ success: false, message: "Tên đăng nhập hoặc mật khẩu không đúng..." })
                     }
                 }
                 else {
-                    res.json({ success: false, message: "User not found" })
+                    res.json({ success: false, message: "Người dùng không tồn tại" })
                 }
             });
         }
@@ -178,9 +178,9 @@ exports.updatePasswordUser = (req, res) => {
                                 if (validUser) {
                                     user.update({}, { 'password': req.body.confirmpassword }, (err, done) => {
                                         if (err) {
-                                            res.send({ success: false, message: "Something wrong" });
+                                            res.send({ success: false, message: "Đã xảy ra lỗi" });
                                         }
-                                        res.send({ success: true, message: "OK" });
+                                        res.send({ success: true, message: "Cập nhật thành công" });
                                     });
                                 }
                                 else {
@@ -219,9 +219,9 @@ exports.activeUser = (req, res) => {
         if (err) throw err;
         var token = req.params.token;
         jwt.verify(token, secret, function (err, decoded) {
-            if (err) res.json({ success: false, message: 'Activation link has expired' });
+            if (err) res.json({ success: false, message: 'Đã hết thời gian kích hoạt tài khoản' });
             else if (!user) {
-                res.json({ success: false, message: 'Activation link has expired' });
+                res.json({ success: false, message: 'Đã hết thời gian kích hoạt tài khoản' });
             }
             else {
 
@@ -256,10 +256,10 @@ exports.resetPassword = (req, res) => {
     User.findOne({ email: req.body.email }).select('email resettoken active firstname lastname').exec(function (err, user) {
         if (err) throw err;
         if (!user) {
-            res.json({ success: false, message: 'Email was not found ...' })
+            res.json({ success: false, message: 'Không tìm thấy e-mail ...' })
         }
         else if (!user.active) {
-            res.json({ success: false, message: 'Account has not yet been activated' });
+            res.json({ success: false, message: 'Tài khoản chưa được kích hoạt' });
         }
         else {
             user.resettoken = jwt.sign({ username: req.body.firstname, email: req.body.email }, secret, { expiresIn: '24h' });
@@ -288,7 +288,7 @@ exports.resetPassword = (req, res) => {
                         }
                     });
 
-                    res.json({ success: true, message: 'Please check your e-mail for password reset link' })
+                    res.json({ success: true, message: 'Vui lòng kiểm tra hộp thư để lấy lại mật khẩu' })
                 }
             });
         }
@@ -394,7 +394,7 @@ exports.savePassword = (req, res) => {
                     client.sendMail(email, function (err, info) {
                         if (err) console.log(err); // If error with sending e-mail, log to console/terminal
                     });
-                    res.json({ success: true, message: 'Password has been reset!' }); // Return success message
+                    res.json({ success: true, message: 'Mật khẩu đã được thay đổi.' }); // Return success message
                 }
             });
         }

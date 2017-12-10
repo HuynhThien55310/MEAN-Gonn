@@ -1,9 +1,9 @@
 import { Component, OnInit,NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '../../services/authentication.service'
+import { AuthenticationService } from '../../services/authentication.service';
 import { ActivatedRoute, Params, Router, UrlSegment } from '@angular/router';
-
-import { UserService } from '../../services/user.service'
+//import { AuthService, AppGlobals } from 'angular2-google-login';
+import { UserService } from '../../services/user.service';
 import { FacebookService, LoginResponse, LoginOptions, UIResponse, UIParams, FBVideoComponent } from 'ngx-facebook';
 @Component({
   selector: 'app-login',
@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   formSignIn: FormGroup;
   message;
   messageClass;
-
   imageURL: string;
   email: string;
   name: string;
@@ -37,40 +36,35 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    // AppGlobals.GOOGLE_CLIENT_ID = '761282640471-mdi9sb06l1d22fojkn5le7r7ps9obq2n.apps.googleusercontent.com';
-    // this.getData();
-    // setTimeout(() => { this.googleAuthenticate() }, 50);
-
+  }
+  login() {
+    this.fb.login()
+      .then((res: LoginResponse) => {
+        console.log('Logged in', res);
+      })
+      .catch(this.handleError);
+    
   }
 
-  share() {
-        let pathUrl = "https://hidden-dawn-45879.herokuapp.com/users/sign_in"
-        console.log(pathUrl)
-        const options: UIParams = {
-          method: 'share',
-          href: pathUrl
-        };
-    
-        this.fb.ui(options)
-          .then((res: UIResponse) => {
-            console.log('Got the users profile', res);
-          })
-          .catch(this.handleError);
-    
-      }
+ 
 
-   /**
-   * Calling Google Authentication service
-   */
-  // googleAuthenticate() {
-  //   this.authService.authenticateUser((result) => {
-  //     //Using Angular2 Zone dependency to manage the scope of variables
-  //     this.zone.run(() => {
-  //       this.getData();
-  //     });
-  //   });
-  // }
+  // share() {
+  //       let pathUrl = "https://hidden-dawn-45879.herokuapp.com/users/sign_in"
+  //       console.log(pathUrl)
+  //       const options: UIParams = {
+  //         method: 'share',
+  //         href: pathUrl
+  //       };
+    
+  //       this.fb.ui(options)
+  //         .then((res: UIResponse) => {
+  //           console.log('Got the users profile', res);
+  //         })
+  //         .catch(this.handleError);
+    
+  //     }
 
+ 
   createForm() {
     this.formSignIn = this.formBuilder.group({
       email: ['', Validators.required], // Username field
@@ -78,12 +72,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  getData() {    
-    this.token = localStorage.getItem('token');
-    this.imageURL = localStorage.getItem('image');
-    this.name = localStorage.getItem('name');
-    this.email = localStorage.getItem('email');
-  }
   onLoginSubmit() {
     const user = {
       email: this.formSignIn.get("email").value,

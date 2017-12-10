@@ -1,4 +1,3 @@
-
 <div class="header-top">
   <div class="header-bottom">
     <div class="container">
@@ -7,7 +6,8 @@
           <h1>GONN</h1>
         </a>
       </div>
- 
+      <!---->
+      <!-- menu -->
       <div class="top-nav">
         <ul class="memenu skyblue">
           <li class="active">
@@ -19,30 +19,45 @@
         </ul>
         <div class="clearfix"> </div>
       </div>
-   
+      <!-- menu end -->
+      <!-- search box -->
       <div class="top-mid">
         <form class="search">
           <input type="text" name="search" placeholder="Search">
         </form>
       </div>
- 
-      <div class="top-left">
+      <!-- search box end -->
+      <!---->
 
-        <a href="/signin"  class="grid">Đăng nhập</a>
-        <a href="/signup"  class="signin-btn">Đăng ký</a>
+
+      <!-- before login -->
+      <div *ngIf="!Authenlogin" class="top-left">
+
+        <a href="/signin" class="grid">Đăng nhập</a>
+        <a href="/signup" class="signin-btn">Đăng ký</a>
 
         <div class="clearfix"> </div>
       </div>
+
+
+    <!-- user avatar -->
+    <div *ngIf="Authenlogin"class="top-left">
+
+      <span>{{username}}</span>
+      <a href="#" class="circle">
+        <img height="32" width="32" src="assets/images/a1.jpg" alt="Braden Hamm">
+      </a>
+      <a href="/home" (click)="onLogout()" class="signin-btn">Đăng xuất</a>
       <div class="clearfix"> </div>
-
     </div>
-
-
-
+    <div class="clearfix"> </div>
+    <!---->
   </div>
+  <!-- user avatar end -->
+
+
+
+
+
 </div>
-
-
-
-
-
+</div>

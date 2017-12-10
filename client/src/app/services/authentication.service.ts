@@ -38,8 +38,10 @@ export class AuthenticationService {
     this.authToken = null; // Set token to null
     localStorage.clear(); // Clear local storage
   }
-  storeUserData(token){
+  storeUserData(token,username,avatar){
     localStorage.setItem('token',token);
+    localStorage.setItem('username',username);
+    localStorage.setItem('avatar',avatar);
    // localStorage.setItem('user',JSON.stringify(user));
     this.authToken=token;
  //   this.user=user;

@@ -136,7 +136,7 @@ exports.postLoginUser = (req, res) => {
                         else {
                             var token = jwt.sign({ userID: user._id }, secret, { expiresIn: '24h' });
                             req.session.user = user;
-                            res.json({ success: true, message: "Login Successfully...", token: token, user: user.email })
+                            res.json({ success: true, message: "Login Successfully...", token: token, firstname:user.firstname, lastname:user.lastname,avatar:user.avatar })
                             //  res.redirect('/index');
                         }
                     } else {
@@ -363,14 +363,11 @@ exports.checkCurrentUser = (req, res) => {
                     });
                     //  res.json({ success:true,message:decoded});
                 }
-
-
             }
         });
     }
-
-
 }
+
 
 exports.savePassword = (req, res) => {
     User.findOne({ resettoken: req.body.resetoken }).select('firstname email name password resettoken').exec(function (err, user) {

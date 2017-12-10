@@ -48,22 +48,6 @@ export class LoginComponent implements OnInit {
 
  
 
-  // share() {
-  //       let pathUrl = "https://hidden-dawn-45879.herokuapp.com/users/sign_in"
-  //       console.log(pathUrl)
-  //       const options: UIParams = {
-  //         method: 'share',
-  //         href: pathUrl
-  //       };
-    
-  //       this.fb.ui(options)
-  //         .then((res: UIResponse) => {
-  //           console.log('Got the users profile', res);
-  //         })
-  //         .catch(this.handleError);
-    
-  //     }
-
  
   createForm() {
     this.formSignIn = this.formBuilder.group({
@@ -85,10 +69,11 @@ export class LoginComponent implements OnInit {
       else{
         this.messageClass = 'alert alert-success'; // Set a success class
         this.message = data.message; // Set a success message
-        this.authenService.storeUserData(data.token);
+        const username=data.firstname + " " +data.lastname;
+        this.authenService.storeUserData(data.token,username,data.avatar);
         this.authenService.createAuthenticationHeaders();
         setTimeout(()=>{
-          console.log(data);
+          window.location.reload();
           this.router.navigate(['/home'])
         },500);
       }

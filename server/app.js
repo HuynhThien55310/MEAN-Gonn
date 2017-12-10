@@ -3,7 +3,11 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
+//port local
 const port = 3000;
+
+//port heroku
+//const port = process.env.PORT||3000;
 const app = express();
 var ingredient=require('./routes/ingredientRouters')(router);
 const authentication=require('./routes/authentication')(router);
@@ -31,6 +35,8 @@ app.use(session({
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+
 
 app.use(cookieParser());
 

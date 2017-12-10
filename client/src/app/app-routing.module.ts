@@ -13,6 +13,8 @@ import { ResetpasswordComponent } from './components/resetpassword/resetpassword
 import { AdminViewPostsComponent } from './components/admin-view-posts/admin-view-posts.component';
 import { HomeIngredientComponent } from './components/home-ingredient/home-ingredient.component';
 
+import { UserinfoComponent } from './components/userinfo/userinfo.component';
+
 
 
 const appRoutes: Routes = [
@@ -69,6 +71,11 @@ const appRoutes: Routes = [
   {
     path:'resetpassword/:token',
     component:ResetpasswordComponent
+
+  },
+  {
+    path:'user-info',
+    component:UserinfoComponent
 
   },
   {

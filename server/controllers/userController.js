@@ -14,7 +14,6 @@ var options = {
         api_key: 'hiimkhanh1605'
     }
 }
-
 var client = nodemailer.createTransport(sgTransport(options));
 
 exports.resgisterUser = (req, res) => {
@@ -72,16 +71,13 @@ exports.resgisterUser = (req, res) => {
                         }
                         else {
                             ///send email activable
-
                             var email = {
                                 from: 'Localhost, dongockhanh3103@gmail.com',
                                 to: user.email,
                                 subject: 'Hello',
                                 text: 'Hello ' + user.firstname + ', thank you for registering at localhost.com. Please click on the following link to complete your activation: http://localhost:3000/activate/' + user.temporarytoken,
                                 html: 'Hello<strong> ' + user.firstname + ' ' + user.lastname + '</strong>,<br><br>Thank you for registering at localhost.com. Please click on the link below to complete your activation:<br><br><a href="http://localhost:3000/active/' + user.temporarytoken + '">' + 'http://localhost:3000/active/</a>'
-
                             };
-
                             client.sendMail(email, function (err, info) {
                                 if (err) {
                                     console.log(error);
@@ -90,8 +86,6 @@ exports.resgisterUser = (req, res) => {
                                     console.log('Message sent: ' + info.response);
                                 }
                             });
-
-
                             res.json({ success: true, message: "Đăng kí thành công! Vui lòng tới kiểm tra e-mail để kích hoạt tài khoản", data: user });
                         }
 
@@ -136,7 +130,7 @@ exports.postLoginUser = (req, res) => {
                         else {
                             var token = jwt.sign({ userID: user._id }, secret, { expiresIn: '24h' });
                             req.session.user = user;
-                            res.json({ success: true, message: "Đăng nhập thành công...", token: token, firstname:user.firstname, lastname:user.lastname,avatar:user.avatar })
+                            res.json({ success: true, message: "Đăng nhập thành công...", token: token, firstname: user.firstname, lastname: user.lastname, avatar: user.avatar })
                             //  res.redirect('/index');
                         }
                     } else {
@@ -323,8 +317,23 @@ exports.getUser = (req, res) => {
             if (err) {
                 res.json({ success: false, message: 'Token invalid: ' + err }); // Return error for token validation
             } else {
-                console.log(decoded);
-                res.json({ success: true, message: decoded });
+
+                // res.json({ success: true, message: decoded });
+
+                if (!decoded.userID) {
+                    res.json({ succes: false, message: "Token invalid" })
+                }
+                else {
+                    User.findOne({ _id: decoded.userID }).select('firstname lastname email birthday role').exec(function (err, user) {
+                        if (err) {
+                            res.json({ success: false, message: "Không tìm thấy tài khoản" });
+                        }
+                        else {
+                            res.json({ succes: true, message: decoded, userInfo: user });
+                        }
+                    });
+
+                }
 
             }
         });
@@ -346,14 +355,16 @@ exports.checkCurrentUser = (req, res) => {
                     res.json({ success: false, message: 'Token invalid: ' + err });
                 }
                 else {
-                    console.log(decoded);
+
                     User.findOne({ _id: decoded.userID }).select('role').exec(function (err, user) {
                         if (err) {
                             res.json({ success: false, message: "User not found" });
                         }
-                        else
-                         {
-                            if (user.role != "admin") {
+                        else {
+                            if (!user.role) {
+                                res.json({ success: false, message: "User not be administrator.." });
+                            }
+                            else if (user.role != "admin") {
                                 res.json({ success: false, message: "User not be administrator.." })
                             }
                             else {

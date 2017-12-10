@@ -2685,7 +2685,7 @@ ul.list-content {
 a.post-title-link {
 	color: #7F3A46;
 	font-weight: bold;
-	font-size: 15px;
+	font-size: 14px;
 	word-wrap: break-word;
 }
 a.post-title-link:hover {
@@ -2693,6 +2693,7 @@ a.post-title-link:hover {
 	color: #f7b0bd;
 }
 .title-container {
+	height: 60px;
 	padding-bottom: 10px;
 }
 .ava-container {
@@ -2777,7 +2778,9 @@ a.item-link {
 	border-radius: 5px;
 }
 .post-act-admin img{
-	width: 15%;
+
+    width: 10%;
+    margin-right: 5%;
 }
 li.sidebar-item:hover{
 	filter: brightness(105%);

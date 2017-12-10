@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 var CommentSchema = mongoose.Schema({
     foodId: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         required: true
     },
     posted: {
@@ -9,7 +9,7 @@ var CommentSchema = mongoose.Schema({
         default: Date().toLocaleString()
     },
     userId: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: String,
             required: true
     },
     userName: {

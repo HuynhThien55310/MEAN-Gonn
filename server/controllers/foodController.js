@@ -9,6 +9,7 @@ exports.createFood = (req, res) => {
     food.body = req.body.body;
     food.like = 0;
     food.share = 0;
+    food.comment = 0;
     food.backdrop = req.body.backdrop;
 
     food.save((err, food) => {

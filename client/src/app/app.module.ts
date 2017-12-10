@@ -1,3 +1,4 @@
+import { CommentService } from './services/comment.service';
 
 import { IngredientService } from './services/ingredient.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,7 +30,6 @@ import { AddIngredientComponent } from './components/add-ingredient/add-ingredie
 import { CKEditorModule } from 'ng2-ckeditor';
 import { HomeIngredientComponent } from './components/home-ingredient/home-ingredient.component';
 import { ViewIngredientComponent } from './components/view-ingredient/view-ingredient.component';
-import { CommentComponent } from './components/comment/comment.component';
 import { UserService } from './services/user.service';
 
 TagInputModule.withDefaults({
@@ -52,8 +52,7 @@ TagInputModule.withDefaults({
     AdminViewPostsComponent,
     AddIngredientComponent,
     HomeIngredientComponent,
-    ViewIngredientComponent,
-    CommentComponent
+    ViewIngredientComponent
 
   ],
   imports: [
@@ -69,7 +68,7 @@ TagInputModule.withDefaults({
     InfiniteScrollModule,
     FacebookModule.forRoot()
   ],
-  providers: [FoodService, AuthenticationService, ActivationService, IngredientService, UserService],
+  providers: [FoodService, AuthenticationService, ActivationService, IngredientService, UserService, CommentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

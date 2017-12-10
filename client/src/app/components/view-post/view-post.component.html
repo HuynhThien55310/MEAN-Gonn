@@ -23,100 +23,46 @@
       <div class="row social-interact-container">
         <div class="post-interact-container col-md-4 col-lg-4 col-sm-4 col-xs-4">
           <span class="post-act-detail">
-            <img src="assets/images/like-empty.png" alt="">15</span>
+            <img src="assets/images/like-empty.png" alt="">{{post.like}}</span>
         </div>
         <div class="post-interact-container col-md-4 col-lg-4 col-sm-4 col-xs-4">
           <span class="post-act-detail">
-            <img src="assets/images/comment.png" alt="">3</span>
+            <img src="assets/images/comment.png" alt="">{{post.comment}}</span>
         </div>
         <div class="post-interact-container col-md-4 col-lg-4 col-sm-4 col-xs-4">
           <span class="post-act-detail">
-            <img src="assets/images/share.png" alt="">19</span>
+            <img src="assets/images/share.png" alt="">{{post.share}}</span>
         </div>
       </div>
 
       <div class="row comment-container">
         <div class="comment-box">
-          <a href="#" class="circle">
-            <img height="32" width="32" src="assets/images/a1.jpg" alt="Braden Hamm">
-          </a>
-          <form action="">
-            <input type="text" name="comment" id="" placeholder="Add your comment">
-          </form>
+            <input type="text" [(ngModel)] = "text" id="" placeholder="Bình luận của bạn"
+            (keyup.enter)="postCmt()"[ngModelOptions]="{standalone: true}" >
+
         </div>
         <div class="comment-list">
-          <ul>
+          <ul *ngFor="let comment of comments">
             <li>
               <div class="comment-item">
                 <a href="#" class="cmt-avatar circle">
-                  <img height="32" width="32" src="assets/images/a1.jpg" alt="Braden Hamm">
+                  <img height="32" width="32" src="{{comment.userAvatar}}">
                 </a>
                 <div class="cmt-info">
                   <div class="cmt-user-info">
-                    <a href="#">User name</a>
-                    <span class="cmt-date">15/10/2017</span>
+                    <a href="#">{{comment.userName}}</a>
+                    <span class="cmt-date">{{comment.posted | date:'short'}}</span>
                   </div>
                   <div class="cmt-text">
-                    <p>I love this food!!!</p>
+                    <p>{{comment.text}}</p>
                   </div>
                 </div>
-
-              </div>
-            </li>
-            <li>
-              <div class="comment-item">
-                <a href="#" class="cmt-avatar circle">
-                  <img height="32" width="32" src="assets/images/a1.jpg" alt="Braden Hamm">
-                </a>
-                <div class="cmt-info">
-                  <div class="cmt-user-info">
-                    <a href="#">User name</a>
-                    <span class="cmt-date">15/10/2017</span>
-                  </div>
-                  <div class="cmt-text">
-                    <p>I love this food!!!</p>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-            <li>
-              <div class="comment-item">
-                <a href="#" class="cmt-avatar circle">
-                  <img height="32" width="32" src="assets/images/a1.jpg" alt="Braden Hamm">
-                </a>
-                <div class="cmt-info">
-                  <div class="cmt-user-info">
-                    <a href="#">User name</a>
-                    <span class="cmt-date">15/10/2017</span>
-                  </div>
-                  <div class="cmt-text">
-                    <p>I love this food!!!</p>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-            <li>
-              <div class="comment-item">
-                <a href="#" class="cmt-avatar circle">
-                  <img height="32" width="32" src="assets/images/a1.jpg" alt="Braden Hamm">
-                </a>
-                <div class="cmt-info">
-                  <div class="cmt-user-info">
-                    <a href="#">User name</a>
-                    <span class="cmt-date">15/10/2017</span>
-                  </div>
-                  <div class="cmt-text">
-                    <p>I love this food!!!</p>
-                  </div>
-                </div>
-
               </div>
             </li>
           </ul>
         </div>
-
+        <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScrollDown()">
+        </div>
       </div>
     </div>
   </div>

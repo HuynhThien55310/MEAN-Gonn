@@ -141,7 +141,7 @@ var UserSchema = new Schema(
         active:{type:Boolean,required:true,default:false},
         temporarytoken: { type: String, required: true },
         resettoken:{type:String,required:false},
-        avatar: {type: String, default: "sample.jpg"}
+        avatar: {type: String, default: "assets/images/profile.png"}
     });
 /**
  * Encode password before save on database

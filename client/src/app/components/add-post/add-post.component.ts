@@ -19,6 +19,7 @@ export class AddPostComponent implements OnInit {
     backdrop: ''
   };
   type = [];
+  message = '';
   constructor(private formBuilder: FormBuilder, private foodService: FoodService,  private route: ActivatedRoute) {
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
@@ -57,12 +58,20 @@ export class AddPostComponent implements OnInit {
     if (this.id !== undefined) {
         // update post
       this.foodService.updatePost(this.food, this.id).subscribe(res => {
-        console.log(res);
+        if (res.success) {
+          this.message = 'Chỉnh sửa thành công';
+        } else {
+          this.message = 'Chỉnh sửa thất bại';
+        }
       });
     } else {
       // create post
       this.foodService.createPost(this.food).subscribe(res => {
-        console.log(res);
+        if (res.success) {
+          this.message = 'Thêm thành công';
+        } else {
+          this.message = 'Thêm thất bại';
+        }
       });
     }
   }

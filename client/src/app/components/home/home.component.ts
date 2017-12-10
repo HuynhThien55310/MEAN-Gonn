@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FoodService } from '../../services/food.service';
-import { UserService } from '../../services/user.service'
+
 
 @Component({
   selector: 'app-home',
@@ -12,27 +12,15 @@ export class HomeComponent implements OnInit {
   items = [];
   page = 1;
   isEnd = false;
-  constructor(private _foodService: FoodService, private userService:UserService) {
+  constructor(private _foodService: FoodService) {
     this.fetchPost();
-    this.test();
-
    }
 
   ngOnInit() {
 
   }
 
-  test() {
 
-    if (localStorage.getItem('token') !== undefined) {
-      const token = localStorage.token;
-      console.log(token);
-      this.userService.getUser(token).subscribe(res => {
-        console.log(res.message);
-      });
-
-    }
-  }
 
   fetchPost() {
     console.log('vao');

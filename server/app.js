@@ -14,7 +14,6 @@ const foodRouter = require('./routes/foodRoutes.js');
 const likeRouter = require('./routes/likeRoutes.js');
 const commentRouter = require('./routes/commentRoutes.js')
 const cookieParser = require('cookie-parser');
-
 const AuthUtils=require('../server/Utilities/AuthenticationUtil');
 const path = require('path');
 const http = require('http');

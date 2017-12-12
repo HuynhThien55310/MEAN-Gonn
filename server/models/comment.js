@@ -1,5 +1,3 @@
-import { ObjectID } from './C:/Users/MrThien/AppData/Local/Microsoft/TypeScript/2.6/node_modules/@types/bson';
-
 const mongoose = require('mongoose');
 var CommentSchema = mongoose.Schema({
     foodId: {

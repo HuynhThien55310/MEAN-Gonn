@@ -80,14 +80,12 @@ const appRoutes: Routes = [
 
   },
   {
-<<<<<<< HEAD
     path:'user-info',
     component:UserinfoComponent
-
-=======
+  },
+  {
     path: 'search/food/:title',
     component: SearchComponent
->>>>>>> 47661d7c0b8e139e58c30db9dd6126b263cd36a3
   },
   {
     path: '',

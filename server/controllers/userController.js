@@ -325,7 +325,7 @@ exports.getUser = (req, res) => {
                     res.json({ succes: false, message: "Token invalid" })
                 }
                 else {
-                    User.findOne({ _id: decoded.userID }).select('firstname lastname email birthday role').exec(function (err, user) {
+                    User.findOne({ _id: decoded.userID }).select('firstname lastname email birthday role avatar').exec(function (err, user) {
                         if (err) {
                             res.json({ success: false, message: "Không tìm thấy tài khoản" });
                         }

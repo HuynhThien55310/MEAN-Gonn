@@ -31,12 +31,9 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { HomeIngredientComponent } from './components/home-ingredient/home-ingredient.component';
 import { ViewIngredientComponent } from './components/view-ingredient/view-ingredient.component';
 import { UserService } from './services/user.service';
-<<<<<<< HEAD
 import { UserinfoComponent } from './components/userinfo/userinfo.component';
-
-=======
 import { SearchComponent } from './components/search/search.component';
->>>>>>> 47661d7c0b8e139e58c30db9dd6126b263cd36a3
+import { LikeService } from './services/like.service'
 
 TagInputModule.withDefaults({
   tagInput: {
@@ -58,12 +55,11 @@ TagInputModule.withDefaults({
     AdminViewPostsComponent,
     AddIngredientComponent,
     HomeIngredientComponent,
-<<<<<<< HEAD
-    UserinfoComponent
-=======
+
+    UserinfoComponent,
     ViewIngredientComponent,
     SearchComponent
->>>>>>> 47661d7c0b8e139e58c30db9dd6126b263cd36a3
+
 
   ],
   imports: [
@@ -79,7 +75,9 @@ TagInputModule.withDefaults({
     InfiniteScrollModule,
     FacebookModule.forRoot()
   ],
-  providers: [FoodService, AuthenticationService, ActivationService, IngredientService, UserService, CommentService],
+  providers: [FoodService, AuthenticationService, ActivationService, 
+    IngredientService, UserService, CommentService
+    ,LikeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

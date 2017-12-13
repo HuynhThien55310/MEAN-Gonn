@@ -8,10 +8,9 @@ exports.hitLike = (req, res) => {
     var foodId = req.body.foodId;
     Like.find({"userId": userId, "foodId": foodId}, (err, result) => {
         if(err){
-            return res.send(err);
+            return res.json({success:false,message:err})
         }
         if(result.length == 0){
-            
             Like.create(req.body, (err, result) => {
                 if(err){
                     return res.send(err);
@@ -23,7 +22,7 @@ exports.hitLike = (req, res) => {
                     console.log(food);
                     food.like = food.like + 1;
                     food.save();
-                    res.json(food);
+                    res.json({success:true, like:true,food:food,currentLike:true});
                 });
             });
         } else {
@@ -39,7 +38,7 @@ exports.hitLike = (req, res) => {
                     console.log(food);
                     food.like = food.like - 1;
                     food.save();
-                    res.json(food);
+                    res.json({success:true, like:false,food:food});
                 });
             });
         }

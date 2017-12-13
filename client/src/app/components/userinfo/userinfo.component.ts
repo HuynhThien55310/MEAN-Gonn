@@ -25,8 +25,10 @@ export class UserinfoComponent implements OnInit {
 
   loadUserInfo(){
     if(localStorage.getItem("token")!==undefined){
+  
       const token= localStorage.token;
       this.userService.getUser(token).subscribe(res=>{
+        console.log(res);
         this.firstname=res.userInfo.firstname;
         this.lastname=res.userInfo.lastname;
         this.email=res.userInfo.email;

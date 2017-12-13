@@ -16,7 +16,6 @@ module.exports=function(router){
     .post(User.postLoginUser)
 
     router.route('/activate/:token').get(User.activeUser);
-
     router.route('/reset').put(User.resetPassword);
     router.route('/reset/:token').get(User.resetPasswordGet);
     router.route('/confirmreset').put(User.savePassword);

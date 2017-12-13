@@ -4,10 +4,10 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
 //port local
-const port = 3000;
+//const port = 3000;
 
 //port heroku
-//const port = process.env.PORT||3000;
+const port = process.env.PORT||3000;
 const app = express();
 var ingredient=require('./routes/ingredientRouters')(router);
 const authentication=require('./routes/authentication')(router);

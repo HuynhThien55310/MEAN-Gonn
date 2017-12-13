@@ -1,0 +1,26 @@
+<div class="detail-container">
+  <div class="container">
+    <div class="post-detail col-md-9 col-lg-9 col-sm-9">
+      <div class="food-title-container">
+        <h1>{{ingre.name}}</h1>
+      </div>
+      <div class="cover-container">
+        <img src="{{ingre.backdrop}}" >
+      </div>
+      <div class="content-container">
+        <div class="row post-meta">
+          <div class="date-of-post col-sm-6 col-md-6 col-lg-6">
+            <h3>{{ingre.price | currency:'VND'}}/{{ingre.unit}}</h3>
+          </div>
+          <div class="date-of-post col-sm-6 col-md-6 col-lg-6">
+            <h3>{{ingre.date | date:'short'}}</h3>
+          </div>
+
+        </div>
+        <div class="row content-detail" [innerHTML]="ingre.description">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

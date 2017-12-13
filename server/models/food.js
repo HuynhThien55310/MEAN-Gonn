@@ -25,6 +25,9 @@ var FoodSchema = mongoose.Schema({
     like: {
         type: Number
     },
+    comment: {
+        type: Number
+    },
     share: {
         type: Number
     },

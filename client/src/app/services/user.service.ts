@@ -7,7 +7,6 @@ import 'rxjs/add/operator/map';
 export class UserService {
 
   constructor(private _http: Http) { }
-
   getUser(token: String) {
     return this._http.get('/user/getuser/' + token)
       .map(res => res.json());

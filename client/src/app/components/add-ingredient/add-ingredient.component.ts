@@ -17,7 +17,7 @@ export class AddIngredientComponent implements OnInit {
     unit: '',
     backdrop: ''
   };
-
+  message = '';
   constructor(private formBuilder: FormBuilder, private ingreService: IngredientService,  private route: ActivatedRoute) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
@@ -46,12 +46,20 @@ export class AddIngredientComponent implements OnInit {
     if (this.id !== undefined) {
         // update post
       this.ingreService.updateIngre(this.ingre, this.id).subscribe(res => {
-        console.log(res);
+        if (res.success) {
+          this.message = 'Chỉnh sửa thành công';
+        } else {
+          this.message = 'Chỉnh sửa thất bại';
+        }
       });
     } else {
       // create post
       this.ingreService.createIngre(this.ingre).subscribe(res => {
-        console.log(res);
+        if (res.success) {
+          this.message = 'Thêm thành công';
+        } else {
+          this.message = 'Thêm thất bại';
+        }
       });
     }
   }

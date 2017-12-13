@@ -129,6 +129,7 @@ exports.postLoginUser = (req, res) => {
                         //login with token
                         else {
                             var token = jwt.sign({ userID: user._id }, secret, { expiresIn: '24h' });
+
                             req.session.user = user;
                             res.json({ success: true, message: "Đăng nhập thành công...", token: token, firstname: user.firstname, lastname: user.lastname, avatar: user.avatar })
                             //  res.redirect('/index');

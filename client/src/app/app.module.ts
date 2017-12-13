@@ -1,3 +1,4 @@
+import { CommentService } from './services/comment.service';
 
 import { IngredientService } from './services/ingredient.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,16 +22,21 @@ import { ActiveAccountComponent } from './components/active-account/active-accou
 import { ActivationService} from './services/activation.service';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { FacebookModule } from 'ngx-facebook';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ViewPostComponent } from './components/view-post/view-post.component';
 import { AdminViewPostsComponent } from './components/admin-view-posts/admin-view-posts.component';
 import { AddIngredientComponent } from './components/add-ingredient/add-ingredient.component';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { HomeIngredientComponent } from './components/home-ingredient/home-ingredient.component';
+import { ViewIngredientComponent } from './components/view-ingredient/view-ingredient.component';
 import { UserService } from './services/user.service';
+<<<<<<< HEAD
 import { UserinfoComponent } from './components/userinfo/userinfo.component';
 
+=======
+import { SearchComponent } from './components/search/search.component';
+>>>>>>> 47661d7c0b8e139e58c30db9dd6126b263cd36a3
 
 TagInputModule.withDefaults({
   tagInput: {
@@ -42,7 +48,6 @@ TagInputModule.withDefaults({
     AppComponent,
     HomeComponent,
     NavComponent,
-
     LoginComponent,
     SignupComponent,
     ForgetpasswordComponent,
@@ -53,7 +58,12 @@ TagInputModule.withDefaults({
     AdminViewPostsComponent,
     AddIngredientComponent,
     HomeIngredientComponent,
+<<<<<<< HEAD
     UserinfoComponent
+=======
+    ViewIngredientComponent,
+    SearchComponent
+>>>>>>> 47661d7c0b8e139e58c30db9dd6126b263cd36a3
 
   ],
   imports: [
@@ -62,8 +72,6 @@ TagInputModule.withDefaults({
     RouterModule,
     FormsModule,
     CKEditorModule,
-
-  
     TagInputModule,
     BrowserAnimationsModule,
     HttpModule,
@@ -71,7 +79,7 @@ TagInputModule.withDefaults({
     InfiniteScrollModule,
     FacebookModule.forRoot()
   ],
-  providers: [FoodService,AuthenticationService,ActivationService,IngredientService,UserService],
+  providers: [FoodService, AuthenticationService, ActivationService, IngredientService, UserService, CommentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

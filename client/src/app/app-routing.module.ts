@@ -1,3 +1,4 @@
+import { SearchComponent } from './components/search/search.component';
 
 import { AddIngredientComponent } from './components/add-ingredient/add-ingredient.component';
 import { ViewPostComponent } from './components/view-post/view-post.component';
@@ -12,6 +13,7 @@ import { ActiveAccountComponent } from './components/active-account/active-accou
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component'
 import { AdminViewPostsComponent } from './components/admin-view-posts/admin-view-posts.component';
 import { HomeIngredientComponent } from './components/home-ingredient/home-ingredient.component';
+import { ViewIngredientComponent } from './components/view-ingredient/view-ingredient.component';
 
 import { UserinfoComponent } from './components/userinfo/userinfo.component';
 
@@ -47,6 +49,10 @@ const appRoutes: Routes = [
     component: ViewPostComponent
   },
   {
+    path: 'ingredient/:id',
+    component: ViewIngredientComponent
+  },
+  {
     path: 'ingredients',
     component: HomeIngredientComponent
   },
@@ -69,14 +75,19 @@ const appRoutes: Routes = [
     component: ActiveAccountComponent
   },
   {
-    path:'resetpassword/:token',
-    component:ResetpasswordComponent
+    path: 'resetpassword/:token',
+    component: ResetpasswordComponent
 
   },
   {
+<<<<<<< HEAD
     path:'user-info',
     component:UserinfoComponent
 
+=======
+    path: 'search/food/:title',
+    component: SearchComponent
+>>>>>>> 47661d7c0b8e139e58c30db9dd6126b263cd36a3
   },
   {
     path: '',

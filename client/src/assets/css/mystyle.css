@@ -348,3 +348,10 @@ button#google-login-button:hover {
     font-weight: bold;
     color: #800080;
 }
+.btn-group-login {
+    display: flex;
+    justify-content: center;
+}
+.signup-container {
+    margin-top: 50px;
+}

@@ -12,6 +12,7 @@ exports.postComment = (req, res) => {
         if(err){
             return res.json({success: false, err: err});
         }
+        console.log(user);
         comment.userAvatar = user.avatar;
         comment.userName = user.firstname + " " + user.lastname;
         Food.findById(req.body.foodId, (err, food) => {

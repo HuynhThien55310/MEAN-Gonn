@@ -2753,6 +2753,7 @@ a.owner-name:hover {
 	padding-top: 50px;
 	padding-bottom: 50px;
 	background-color: #f9f9f9;
+	height: 92vh;
 }
 ul.sidebar-list {
 	list-style-type: none;

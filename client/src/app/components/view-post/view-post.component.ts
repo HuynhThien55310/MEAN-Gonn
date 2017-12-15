@@ -77,16 +77,16 @@ export class ViewPostComponent implements OnInit {
     this.comment.text = this.text;
     this._cmtService.postComment(this.comment).subscribe(res => {
       this.text = '';
+      this.comments = [];
     });
     this.page = 1;
     this.isEnd = false;
-    this.comments = [];
     this.fetchCmt();
     console.log('fetch cmt sau khi cmt ' + this.comments);
   }
 
   onLike() {
-    const like = { foodId: this.like.foodId, userId: this.like.userId }
+    const like = { foodId: this.like.foodId, userId: this.like.userId };
 
     this.likeService.hitLike(like).subscribe(res => {
       if (!res.success) {

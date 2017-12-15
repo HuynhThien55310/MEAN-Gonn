@@ -355,3 +355,37 @@ button#google-login-button:hover {
 .signup-container {
     margin-top: 50px;
 }
+button.btn.btn-primary.btn-block-user {
+    width: 30%;
+    border-radius: 10px;
+    background-color: #E91E63;
+    border: solid 1px #E91E63;
+    transition: all 0.3s;
+}
+
+button.btn.btn-primary.btn-block-user:hover {
+    background-color: #b91950;
+    border: solid 1px #b91950;
+}
+
+button.btn.btn-primary.btn-activate {
+    width: 30%;
+    border-radius: 10px;
+    background-color: #03B0D8;
+    border: solid 1px #03B0D8;
+    transition: all 0.3s;
+}
+
+button.btn.btn-primary.btn-activate:hover {
+    background-color: rgb(8, 132, 160);
+    border: solid 1px rgb(8, 132, 160);
+}
+h1.title {
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 30px;
+    color: #f994a7;
+}
+th {
+    color: purple;
+}

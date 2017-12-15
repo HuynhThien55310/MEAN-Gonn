@@ -12,4 +12,11 @@ export class UserService {
       .map(res => res.json());
   }
 
+  getListUser(){
+    return this._http.get('/user/getlistuser').map(res=>res.json());
+  }
+  setActiveUser(email){
+    return this._http.post('/user/blockuser',email).map(res=>res.json());
+  }
+
 }

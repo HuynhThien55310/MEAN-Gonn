@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-var Food = require('../models/food.js')
+var Food = require('../models/food.js');
+var User = require ('../models/user.js');
 
 
 exports.createFood = (req, res) => {
@@ -87,3 +88,4 @@ exports.searchFood = (req, res) => {
 
     }
 }
+

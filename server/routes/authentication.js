@@ -21,6 +21,9 @@ module.exports=function(router){
     router.route('/confirmreset').put(User.savePassword);
     router.route('/getuser/:token').get(User.getUser);
     router.route('/checkuser/:token').get(User.checkCurrentUser);
+
+    router.route('/getlistuser').get(User.getListUser);
+    router.route('/blockuser').post(User.setActiveUser);
     
 
    return router;

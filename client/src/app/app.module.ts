@@ -33,7 +33,8 @@ import { ViewIngredientComponent } from './components/view-ingredient/view-ingre
 import { UserService } from './services/user.service';
 import { UserinfoComponent } from './components/userinfo/userinfo.component';
 import { SearchComponent } from './components/search/search.component';
-import { LikeService } from './services/like.service'
+import { LikeService } from './services/like.service';
+import { UserManagementComponent } from './components/user-management/user-management.component'
 
 TagInputModule.withDefaults({
   tagInput: {
@@ -58,7 +59,8 @@ TagInputModule.withDefaults({
 
     UserinfoComponent,
     ViewIngredientComponent,
-    SearchComponent
+    SearchComponent,
+    UserManagementComponent
 
 
   ],

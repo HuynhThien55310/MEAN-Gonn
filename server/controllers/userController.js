@@ -412,3 +412,45 @@ exports.savePassword = (req, res) => {
         }
     });
 }
+
+exports.getListUser =(req,res)=>{
+    User.find({},(err,users)=>{
+        if(err){
+            res.json({success:false,message:"Không tìm thấy Users"})
+        }
+        else{
+            res.json({success:true,listuser:users});
+        }
+    });
+}
+exports.setActiveUser= (req,res)=>{
+    const emailUser=req.body.email;
+    User.findOne({email:emailUser},(err,user)=>{
+        if(err){
+            res.json({success:false,message:"Không tìm thấy Users"})
+        }
+        else{
+            console.log(user)
+            if(user.active){
+                User.findOneAndUpdate({ 'email': user.email },
+                { $set: { active:false } },
+                { new: true },
+                (err, user) => {
+                    if (err) res.send(err);
+                    res.json({success:true,message:"Block"})
+                });
+
+            }else{
+                User.findOneAndUpdate({ 'email': user.email },
+                { $set: { active:true } },
+                { new: true },
+                (err, user) => {
+                    if (err) res.send(err);
+                    res.json({success:true,message:"Active"})
+                });
+
+            }
+            
+        }
+    })
+}

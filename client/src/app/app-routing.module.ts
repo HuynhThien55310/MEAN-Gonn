@@ -16,6 +16,8 @@ import { HomeIngredientComponent } from './components/home-ingredient/home-ingre
 import { ViewIngredientComponent } from './components/view-ingredient/view-ingredient.component';
 
 import { UserinfoComponent } from './components/userinfo/userinfo.component';
+import { UserManagementComponent } from './components/user-management/user-management.component';
+
 
 
 
@@ -87,6 +89,11 @@ const appRoutes: Routes = [
     path: 'search/food/:title',
     component: SearchComponent
   },
+  {
+    path:'admin/user-management',
+    component: UserManagementComponent
+  }
+  ,
   {
     path: '',
     component: HomeComponent

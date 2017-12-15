@@ -1,0 +1,33 @@
+<div class="admin-container">
+  <div class="container">
+    <div class="md-col-10 lg-col-10 sm-col-10 md-col-offset-1 lg-col-offset-1 sm-col-offset-1">
+      <h1 class="title">Quản lý người dùng</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Tên</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.email}}</td>
+            <td>{{user.lastname}} {{user.firstname}}</td>
+            <td>
+              <button *ngIf="user.active" type="submit" (click)="onBlock(user.email)"class="btn btn-primary btn-block-user">Chặn</button>
+              <button *ngIf="!user.active" type="submit" (click)="onBlock(user.email)" class="btn btn-primary btn-activate">Kích hoạt</button>
+            </td>
+          </tr>
+          <!-- <tr>
+            <td>john@example.com</td>
+            <td>last_name first_name</td>
+            <td>
+              
+            </td>
+          </tr> -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
